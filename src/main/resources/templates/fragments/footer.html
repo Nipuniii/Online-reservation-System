@@ -1,0 +1,79 @@
+<!-- src/main/resources/templates/fragments/footer.html -->
+<div th:fragment="footer" class="bg-[#171717] mt-2" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="flex flex-col w-full gap-4 font-boogaloo">
+        <div class="container flex flex-col mt-10 text-center md:flex-row md:gap-36 md:text-start">
+            <!-- content -->
+            <div class="w-[400px] text-white flex flex-col">
+                <h1 class='text-[23px]'>Book a Table</h1>
+                <p class="mt-4">Save time with proper planning</p>
+                <p class='text-primaryColor text-[52px] font-bold mt-8'>112 565 656</p>
+            </div>
+
+            <!-- links -->
+            <div class="flex flex-col items-center justify-center gap-2 text-white md:justify-start md:items-start">
+                <h1 class='text-[23px] mb-6'>Quick Links</h1>
+                <a href='/home' class="hover:text-gray-500">Home</a>
+                <a href='/about' class="hover:text-gray-500">About</a>
+                <a href='/menu' class="hover:text-gray-500">Menu</a>
+                <a href='/deals' class="hover:text-gray-500">Deals & Offers</a>
+                <a href='/contact' class="hover:text-gray-500">Contact</a>
+            </div>
+
+            <!-- open time -->
+            <div class="text-white">
+                <h1 class='text-[23px] mb-6 mt-4 md:mt-0'>Open Time</h1>
+                <div class="flex flex-col gap-2">
+                    <p class="">Mon-Fri: 10.00 AM - 1.00 PM</p>
+                    <p class="">Saturday: 11.00 AM To Midnight</p>
+                    <p class="">Sunday: Closed</p>
+                </div>
+            </div>
+
+            <!-- address -->
+            <div class="text-white">
+                <h1 class='text-[23px] mb-6 mt-4 md:mt-0'>Address</h1>
+                <div class="flex flex-col items-center justify-center gap-2 md:justify-start md:items-start">
+                    <a href="https://www.google.com/maps" class='flex flex-row gap-4'>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
+                        <i class='text-white'>467 Park Avenue New York, NY</i>
+                    </a>
+                    <a href="mailto:info@crispcrust.com" class='flex flex-row gap-4'>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25" />
+                        </svg>
+                        <i class='text-white'>info@crispcrust.com</i>
+                    </a>
+                    <div class="flex flex-row gap-2 md:mt-4">
+                        <a href="https://www.facebook.com" class='text-white w-6 h-6'>
+                            <!-- Facebook SVG here -->
+                        </a>
+                        <a href="https://twitter.com" class='text-white w-6 h-6'>
+                            <!-- Twitter SVG here -->
+                        </a>
+                        <a href="https://www.instagram.com" class='text-white w-6 h-6'>
+                            <!-- Instagram SVG here -->
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container flex flex-col gap-4 mt-6 md:flex-row">
+        <h1 class="font-bold text-white uppercase md:text-[25px] text-[20px] text-center md:text-start">
+            Subscribe&nbsp;to&nbsp;our&nbsp;<span class='text-primaryColor'>Newsletter</span></h1>
+        <form method="post" action="#" class="group flex justify-end w-full gap-3">
+            <input type="email" name="email" id="email" class='w-8/12 p-3 rounded-xl' placeholder='Enter Your Email Address' required />
+            <button type="submit" class="p-3 font-bold text-white md:w-2/12 rounded-xl uppercase bg-primaryColor border border-primaryColor group-hover:border-primaryColor group-hover:bg-transparent group-hover:text-primaryColor">
+                <span>Send Now</span>
+            </button>
+        </form>
+    </div>
+
+    <div class="container p-4 text-center text-white md:mb-0 mb-20">
+        <p>Copyright &copy; 2023 The Pizza Hub. Designed by <a href='https://sterlinglanka.com/' class="font-bold cursor-pointer text-primaryColor">Sterling BPO Solution</a></p>
+    </div>
+</div>
+

@@ -5,8 +5,13 @@ module.exports = {
        "./src/main/resources/static/**/*.js",
   ],
   theme: {
-    extend: {},
-  },
+      extend: {
+        colors: {
+          'custom-dark': '#2E3930',
+          'dark-yellow':'#C6A479',// Add your custom color
+        },
+      },
+    },
   plugins: [],
 }
 

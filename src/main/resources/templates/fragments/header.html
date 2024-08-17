@@ -1,0 +1,135 @@
+<header class='fixed z-20 flex items-center w-full bg-white header md:mb-4'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <div class="container font-boogaloo">
+        <div class="flex items-center justify-between">
+            <!-- Logo -->
+            <div class='md:mt-2' style="margin-left: 40px;">
+                <img src="/images/logo.png" class='w-24 h-24 ' />
+            </div>
+            <!-- menu -->
+            <div class="navigation">
+                <ul class="menu md:flex items-center gap-[2.7rem] text-xl hidden">
+                    <li>
+                        <a href="/home" class="text-black hover:text-primaryColor">Home</a>
+                    </li>
+                    <li>
+                        <a href="/about" class="text-black hover:text-primaryColor">About</a>
+                    </li>
+                    <li>
+                        <a href="/menu" class="text-black hover:text-primaryColor">Menu</a>
+                    </li>
+                    <li>
+                        <a href="/offer" class="text-black hover:text-primaryColor">Deals & Offers</a>
+                    </li>
+                    <li>
+                        <a href="/contact" class="text-black hover:text-primaryColor">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- nav-right -->
+            <div class="flex items-center h-20 gap-4">
+                <!-- search bar -->
+                <div class="hidden md:block">
+                    <input type="text" placeholder="Search"
+                           class="h-10 p-2 text-black border border-gray-800 rounded-full" />
+                </div>
+                <div class="flex items-center md:gap-2">
+                    <div class="relative inline-block text-left">
+                        <div>
+                            <button id="dropdown-button" type="button"
+                                    class="inline-flex justify-center items-center p-2 text-gray-600 hover:text-gray-800 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div id="dropdown-menu"
+                             class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <!-- Dropdown content here -->
+                            <div class="py-1">
+                                <a href="/login" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Sign
+                                    Up</a>
+                                <a href="/user/orders"
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">User
+                                    Dashboard</a>
+                                <a href="/admin/dashboard"
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Admin
+                                    Dashboard</a>
+                                <a href="/cashier/dashboard"
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Cashier
+                                    Dashboard</a>
+                                <a href="/user/details"
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Edit
+                                    Profile</a>
+                                <button type="button" onclick="showLogoutWarning()"
+                                        class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Logout</button>
+
+                                <script>
+                                    function showLogoutWarning() {
+                                        Swal.fire({
+                                            title: 'Are you sure?',
+                                            text: 'You will be logged out!',
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#7C0000',
+                                            cancelButtonColor: '#3085d6',
+                                            confirmButtonText: 'Yes, logout!',
+                                            customClass: {
+                                                container: 'red-bg-alert',
+                                                confirmButton: 'swal-button',
+                                                cancelButton: 'swal-button'
+                                            }
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                // Perform the logout action
+                                            }
+                                        });
+                                    }
+                                </script>
+                                <style>
+                                    .swal-button {
+                                        width: 180px;
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="/cart" class="text-gray-800">
+                        <div class="flex justify-center items-center">
+                            <div class="relative md:mb-4 mb-4">
+                                <div class="t-0 absolute left-3">
+                                    <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">0</p>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke-width="1.5" stroke="currentColor" class="file: mt-4 h-6 w-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <h1 class="">Hi, User</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+    const dropdownButton = document.getElementById('dropdown-button');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    dropdownButton.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('hidden');
+    });
+
+    window.addEventListener('click', (event) => {
+        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.add('hidden');
+        }
+    });
+</script>

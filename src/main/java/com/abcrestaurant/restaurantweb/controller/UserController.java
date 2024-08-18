@@ -19,4 +19,10 @@ public class UserController {
     public String showAboutPage(){
         return  "user/aboutus";
     }
+
+    @GetMapping("/availbility")
+    public String showAvailabilityPage(){
+        return  "user/availabilitycheck";
+    }
+
 }

@@ -146,23 +146,13 @@
                         </select>
                     </div>
                     <div class="pt-6 flex flex-col w-[250px]">
-                        <label  class="text-white font-bold">Date</label>
-                        <select class="p-2 border rounded">
-                            <option value="" selected>2024/11/12</option>
-                            <option>Audi</option>
-                            <option>BMW</option>
-                            <option>Ford</option>
-                        </select>
+                        <label for="check-in" class="block text-white font-bold">Check-in:</label>
+                        <input type="date" id="check-in" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
                     <div class="pt-6 flex flex-col w-[250px]">
-                        <label  class="text-white font-bold">Date</label>
-                        <select class="p-2 border rounded">
-                            <option value="">2024/12/1</option>
-                            <option>example</option>
-                            <option>example</option>
-                            <option>example</option>
-                        </select>
+                        <label for="check-in" class="block text-white font-bold">Check-out:</label>
+                        <input type="date" id="check-in" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
 
                     <div class="pt-6 flex flex-col w-[250px]">
@@ -389,9 +379,10 @@ prev.addEventListener("click", goPrev);
                             <h2 class="text-xl font-bold">Deluxe Room</h2>
                             <p class="text-gray-700">40 m² | 2 Guests | 1 Bed</p>
                             <p class="text-gray-500">A spacious and elegantly furnished suite offering a separate living area, bedroom, and luxurious amenities, perfect for those seeking added comfort and style during their stay.</p>
-                            <button class="bg-dark-yellow  text-white font-bold py-2 px-4 rounded mt-4">
-                                Check Availability
+                            <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
+                                <a th:href="@{/availbility}" class="text-white">Check Availability</a>
                             </button>
+
                         </div>
                     </div>
 
@@ -402,9 +393,10 @@ prev.addEventListener("click", goPrev);
                             <h2 class="text-xl font-bold">Superior Room</h2>
                             <p class="text-gray-700">30 m² | 2 Guests | 1 Bed</p>
                             <p class="text-gray-500">A cozy and stylish room designed for comfort and relaxation, featuring modern amenities and a charming ambiance, ideal for a memorable stay.</p>
-                            <button class="bg-dark-yellow  text-white font-bold py-2 px-4 rounded mt-4">
-                                Check Availability
+                            <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
+                                <a th:href="@{/availbility}" class="text-white">Check Availability</a>
                             </button>
+
                         </div>
                     </div>
 
@@ -416,8 +408,9 @@ prev.addEventListener("click", goPrev);
                             <p class="text-gray-700">60 m² | 4 Guests | 2 Beds</p>
                             <p class="text-gray-500">An elegant suite with separate living and sleeping areas, offering premium amenities and exceptional comfort, perfect for families or groups.</p>
                             <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                Check Availability
+                                <a th:href="@{/availbility}" class="text-white">Check Availability</a>
                             </button>
+
                         </div>
                     </div>
 

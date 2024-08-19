@@ -131,57 +131,6 @@
         </div>
         <!-- Carousel end -->
 
-        <!-- Search bar Section -->
-        <div class="search-bar ">
-            <div class="p-6 grid grid-cols-1 bg-custom-dark shadow-lg flex items-center justify-center  ">
-                <div class="flex flex-col md:flex-row gap-7 flex items-center justify-center ">
-
-                    <div class="pt-6 flex flex-col w-[250px]">
-                        <label class="text-white font-bold">Location</label>
-                        <select class="p-2 border rounded">
-                            <option value="" selected>Galle</option>
-                            <option>Audi</option>
-                            <option>BMW</option>
-                            <option>Ford</option>
-                        </select>
-                    </div>
-                    <div class="pt-6 flex flex-col w-[250px]">
-                        <label for="check-in" class="block text-white font-bold">Check-in:</label>
-                        <input type="date" id="check-in" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    </div>
-
-                    <div class="pt-6 flex flex-col w-[250px]">
-                        <label for="check-in" class="block text-white font-bold">Check-out:</label>
-                        <input type="date" id="check-in" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    </div>
-
-                    <div class="pt-6 flex flex-col w-[250px]">
-                        <label  class="text-white font-bold">Rooms</label>
-                        <select class="p-2 border rounded">
-                            <option value="">1 Room</option>
-                            <option>example</option>
-                            <option>example</option>
-                            <option>example</option>
-                        </select>
-                    </div>
-
-                    <div class="pt-6 flex flex-col w-[250px]">
-                        <label  class="text-white font-bold">Guest</label>
-                        <select class="p-2 border rounded">
-                            <option value="">Guets 1 Adult,0 Child</option>
-                            <option>example</option>
-                            <option>example</option>
-                            <option>example</option>
-                        </select>
-                    </div>
-
-                    <div class="flex flex-col pt-10">
-                        <button class="p-2 border bg-dark-yellow rounded-md h-[50px] w-[130px] text-white">Search</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Search bar end -->
 
 
         <!--welcome to note -->
@@ -354,7 +303,7 @@ prev.addEventListener("click", goPrev);
          <!--end welcome note -->
 
 
-        <!-- our accommodation-->
+        <!-- our product-->
         <div class="p-5">
         <div class="flex items-center justify-center ">
             <div class="bg-white p-8 rounded-lg  text-center">
@@ -420,62 +369,140 @@ prev.addEventListener("click", goPrev);
 
         </div>
 
-        <!-- end our accommodation-->
+        <!-- end our product-->
 
-        <!-- gallery start -->
-        <div class="mt-24 p-5">
-        <div class="relative overflow-hidden bg-white py-10">
-            <div class="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
-                <div class="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
-                    <div class="sm:max-w-lg">
-                        <h1 class="font text-4xl font-bold tracking-tight text-dark-yellow sm:text-6xl">A Visual Symphony of Luxury</h1>
-                        <p class="mt-4 text-xl text-gray-500">Experience the epitome of luxury through captivating visuals at Royal Palace's gallery. Discover the opulence and elegance that define our majestic retreat in every exquisite detail.</p>
+
+
+
+        <!-- ==== About section ===== -->
+        <div class="text-center md:h-[700px] items-center md:bg-gray-100 md:mt-12 mt-16" id="aboutSection">
+
+            <div class="container flex flex-col md:flex-row">
+                <!-- blur image -->
+<!--                <div class="absolute hidden md:mt-12 md:block">-->
+<!--                    <img th:src="@{/images/red-bell.png}" alt="" class="w-52 mw-52 opacity-40">-->
+<!--                </div>-->
+                <!-- image list -->
+                <div class="container flex flex-row justify-center md:mt-16 md:p-2 md:w-1/2">
+                    <img th:src="@{/Images/about.png}" alt="">
+                </div>
+
+                <!-- about list -->
+                <div class="container flex flex-col m-4 md:w-1/2 md:text-start">
+                    <h1 class=" text-4xl font-bold text-dark-yellow font-black md:text-start md:block md:mt-16">About <span
+                            class="text-primaryColor">Us</span></h1>
+                    <p class="hidden w-full mt-4 font-bold md:text-2xl text-primaryColor md:mt-0 md:block">Where
+                        locally sourced ingredients meet global inspiration on every Foods</p>
+                    <p class="mt-4 font-bold text-gray-500">Begin with the origin of your pizzeria. Share the passion
+                        and inspiration behind starting the business. Whether it's a family tradition, a culinary
+                        adventure, or a love for crafting perfect pizzas, let your audience know how it all began.</p>
+                    <div class="flex flex-row mt-4 gap-12 md:mt-4">
+                        <div class="flex flex-col items-center gap-2 md:items-start md:gap-0">
+                            <img th:src="@{/Images/delivery-man.png}" alt="" class="w-20 h-20">
+                            <h1 class="text-2xl font-bold text-primaryColor text-start">Food Order</h1>
+                            <p class="font-bold text-gray-500 md:w-3/4 md:mt-4 text-start">Satisfy your cravings with a
+                                click. Dive into a world of flavors by placing your order now</p>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 md:items-start md:gap-0">
+                            <img th:src="@{/Images/delivery-man2.png}" alt="" class="w-20 h-20">
+                            <h1 class="text-2xl font-bold text-primaryColor">Fast Delivery</h1>
+                            <p class="font-bold text-gray-500 md:w-3/4 md:mt-4">Our speedy delivery brings the taste
+                                of perfection to your doorstep in record time</p>
+                        </div>
                     </div>
-                    <div>
-                        <div class="mt-10">
-                            <!-- Decorative image grid -->
-                            <div aria-hidden="true" class="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl">
-                                <div class="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
-                                    <div class="flex items-center space-x-6 lg:space-x-8">
-                                        <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                            <div class="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
-                                                <img  src="/images/gallery1.png"  class="h-full w-full object-cover object-center">
-                                            </div>
-                                            <div class="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img  src="/images/gallery1.png"  alt="" class="h-full w-full object-cover object-center">
-                                            </div>
-                                        </div>
-                                        <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                            <div class="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img  src="/images/gallery2.png"  alt="" class="h-full w-full object-cover object-center">
-                                            </div>
-                                            <div class="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img  src="/images/gallery2.png"  alt="" class="h-full w-full object-cover object-center">
-                                            </div>
-                                            <div class="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img  src="/images/gallery3.png"  alt="" class="h-full w-full object-cover object-center">
-                                            </div>
-                                        </div>
-                                        <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                            <div class="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img  src="/images/gallery4.png"  alt="" class="h-full w-full object-cover object-center">
-                                            </div>
-                                            <div class="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img   src="/images/gallery4.png"  alt="" class="h-full w-full object-cover object-center">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+
+                    <div class="flex flex-row mt-4 md:gap-y-12 md:mt-10">
+                        <div class="flex flex-col items-center gap-24 md:items-start md:gap-0">
+                            <a th:href="@{/aboutus}">
+                                <button type="button"
+                                        class='flex flex-row text-center items-center justify-center gap-2 p-3 font-bold text-white uppercase w-44 rounded-2xl hover:bg-black bg-dark-yellow  md:mt-6 md:ml-0 ml-20'>
+                                    Read More
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="flex flex-col items-center gap-10 md:items-start md:gap-10">
+                            <div class="absolute md:mt-[5px] hidden md:block">
+                                <img th:src="@{/Images/green-leaves.png}" alt=""
+                                     class="md:ml-[240px] w-48 h-48 opacity-40">
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- end about us -->
+
+
+
+
+        <!-- why choose us -->
+        <div class=" w-full text-center md:h-[600px] mt-16 flex  flex-col items-center">
+            <div class="flex flex-col mt-8 md:mt-32">
+                <h1 class="text-4xl font-bold text-dark-yellow md:text-5xl">Why Choose <span class="text-primaryColor">Us</span></h1>
+                <p class="mt-4 font-bold text-gray-600 md:mt-8 md:text-xl">Our pizzas are a labor of love, meticulously
+                    crafted by skilled artisans who understand the alchemy of flavors</p>
+            </div>
+
+            <!-- category list -->
+            <div class="flex flex-col items-center mt-4 md:flex-row md:mt-16 px-4  md:p-2">
+                <!-- Row 1: All Kind of Pizza Flavors and Fresh Foods -->
+                <div class="flex flex-row flex-wrap justify-center gap-8">
+                    <div class="flex flex-col items-center transition-transform transform group hover:scale-125">
+                        <div class="p-4 rounded-full bg-dark-yellow">
+                            <img th:src="@{/Images/pizza7.png}" alt="" class='object-cover w-16 h-16' />
+                        </div>
+                        <label
+                                class='mt-4 font-extrabold md:text-xl text-md text-primaryColor hover:text-primaryColor'>All
+                            Kind of Pizza Flavors</label>
+                        <p class="mt-4 md:mt-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident,
+                            accusantium.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center transition-transform transform group hover:scale-125">
+                        <div class="p-4 rounded-full bg-dark-yellow">
+                            <img th:src="@{/Images/pizza.png}" alt="" class='object-cover w-16 h-16' />
+                        </div>
+                        <label
+                                class='mt-4 font-extrabold md:text-xl text-md text-primaryColor hover:text-primaryColor'>Fresh
+                            Foods</label>
+                        <p class="mt-4 md:mt-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident,
+                            accusantium.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-row flex-wrap justify-center gap-8 mt-4 md:mt-0">
+                    <!-- Row 2: Best Taste and On Time Delivery -->
+                    <div class="flex flex-col items-center  transition-transform transform group hover:scale-125">
+                        <div class="p-4 rounded-full bg-dark-yellow">
+                            <img th:src="@{/Images/pizza-shop.png}" alt="" class='object-cover w-16 h-16' />
+                        </div>
+                        <label
+                                class='mt-4 font-extrabold md:text-xl text-md text-primaryColor hover:text-primaryColor'>Best
+                            Taste</label>
+                        <p class="mt-4 md:mt-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident,
+                            accusantium.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center transition-transform transform group hover:scale-125">
+                        <div class="p-4 rounded-full bg-dark-yellow">
+                            <img th:src="@{/Images/on-time.png}" alt="" class='object-cover w-16 h-16' />
+                        </div>
+                        <label
+                                class='mt-4 font-extrabold md:text-xl text-md text-primaryColor hover:text-primaryColor'>On
+                            Time Delivery</label>
+                        <p class="mt-4 md:mt-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident,
+                            accusantium.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- end gallery -->
+        <!-- end why choose us -->
 
 
         <!-- contact page -->

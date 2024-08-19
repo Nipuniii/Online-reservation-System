@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+    <link href="/css/tailwind.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</head>
+<body>
+
+<!-- Header -->
+<th:block th:replace="fragments/header :: header"></th:block>
+<div class="py-10">kjjnjn</div>
+<main>
+    <!-- MAIN COVER -->
+    <div class="relative bg-cover bg-center" style="background-image: url('/images/about2.jpg'); height: 500px;">
+        <!-- Dark Overlay -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 1;"></div>
+
+        <!-- Content Here -->
+        <div class="flex items-center justify-center h-full relative" style="z-index: 2;">
+            <h1 class="text-3xl font-bold text-white md:text-5xl font-boogaloo">Reservation</h1>
+        </div>
+    </div>
+
+
+
+
+    <div style="max-width: 768px; margin: auto; padding: 24px; background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+        <!-- Form Header -->
+        <h2 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 16px;">Reservation Form</h2>
+        <p style="text-align: center; color: #4a4a4a; margin-bottom: 24px;">
+            We are willing to help you make the reservation online to save your time and money, or you can call us directly through the customer service hotline:
+            <span style="color: #C6A479; font-weight: bold;">225-88888</span>
+        </p>
+
+        <!-- Form Body -->
+        <form>
+            <div style="display: grid; gap: 16px;">
+                <!-- Branch Selection -->
+                <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
+                    <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-map-marker-alt"></i></span>
+                    <select style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                        <option value="">Select Branch</option>
+                        <option value="kandy">Kandy</option>
+                        <option value="colombo">Colombo</option>
+                        <option value="galle">Galle</option>
+                    </select>
+                </div>
+
+                <!-- Username and Email -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
+                        <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-user"></i></span>
+                        <input type="text" placeholder="Username" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                    </div>
+                    <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
+                        <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-envelope"></i></span>
+                        <input type="email" placeholder="Email" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                    </div>
+                </div>
+
+                <!-- Phone Number and Number of People -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
+                        <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-phone"></i></span>
+                        <input type="tel" placeholder="Phone" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                    </div>
+                    <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
+                        <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-users"></i></span>
+                        <select style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                            <option>1 person</option>
+                            <option>2 people</option>
+                            <option>3 people</option>
+                            <option>4 people</option>
+                            <option>5 people</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Date and Time -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
+                        <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-calendar"></i></span>
+                        <input type="date" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                    </div>
+                    <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
+                        <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-clock"></i></span>
+                        <input type="time" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                    </div>
+                </div>
+
+                <!-- Message -->
+                <div style="background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
+                    <textarea placeholder="Additional requests (optional)" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;" rows="3"></textarea>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div style="text-align: center; margin-top: 24px;">
+                <button type="submit" style="background-color: #C6A479; color: #ffffff; padding: 8px 24px; border-radius: 9999px; border: none; cursor: pointer; font-weight: bold; transition: background-color 0.2s;">
+                    BOOK TABLE
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+
+</main>
+
+<!-- Footer -->
+<th:block th:replace="fragments/footer :: footer"></th:block>
+
+</body>
+</html>

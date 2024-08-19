@@ -25,4 +25,13 @@ public class UserController {
         return  "user/availabilitycheck";
     }
 
+    @GetMapping("/reservation")
+    public String showReservationPage(){
+        return  "user/reservation";
+    }
+
+    @GetMapping("/menu")
+    public String showaMenuPage(){
+        return  "user/menu";
+    }
 }

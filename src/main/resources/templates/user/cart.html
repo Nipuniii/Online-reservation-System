@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart</title>
+  <link href="/css/tailwind.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+  <style>
+    /* General Container */
+.container {
+  padding: 0 15px;
+}
+
+.cart-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .cart-content {
+    flex-direction: row;
+  }
+}
+
+/* Cart Header */
+.cart-header {
+  padding: 24px;
+  width: 75%;
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .cart-header {
+    margin-top: 0;
+  }
+}
+
+.header-titles {
+  display: none;
+  padding: 4px;
+  background-color: black;
+  border-radius: 9999px;
+  color: white;
+}
+
+@media (min-width: 1024px) {
+  .header-titles {
+    display: flex;
+  }
+}
+
+.header-titles > div {
+  flex: 1;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.title-product {
+  text-align: left;
+  padding-left: 4px;
+  border-radius: 9999px 0 0 9999px;
+}
+
+.title-price {
+  margin-left: 192px;
+}
+
+.title-action {
+  padding-right: 20px;
+  margin-right: 40px;
+  border-radius: 0 9999px 9999px 0;
+}
+
+/* Cart Items */
+.cart-items {
+  border-bottom: 1px solid black;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid black;
+  padding-bottom: 15px;
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .cart-item {
+    gap: 0;
+    margin-top: 0;
+  }
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .item-details {
+    flex-direction: row;
+    gap: 16px;
+  }
+}
+
+.item-image {
+  width: 48px;
+  height: 48px;
+}
+
+@media (min-width: 768px) {
+  .item-image {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.item-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 200px;
+}
+
+.item-name {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.item-price, .item-total {
+  font-weight: bold;
+}
+
+.item-quantity {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .item-quantity {
+    flex-direction: row;
+    margin-top: 0;
+    margin-left: 32px;
+    gap: 80px;
+  }
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 32px;
+  border: 1px solid black;
+  border-radius: 9999px;
+  background-color: darkgrey;
+}
+
+.quantity-controls button {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: darkred;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.item-actions {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .item-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 128px;
+    margin-top: 16px;
+  }
+}
+
+.item-actions button {
+  padding: 4px 8px;
+  font-size: 0.875rem;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background-color: blue;
+}
+
+.btn-delete {
+  background-color: orange;
+}
+
+/* Cart Summary */
+.cart-summary {
+  order: -1;
+  width: 25%;
+  margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+  .cart-summary {
+    order: 0;
+  }
+}
+
+.summary-box {
+  padding: 24px;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.summary-box h2 {
+  margin-bottom: 16px;
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.summary-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.summary-details span:last-child {
+  font-weight: bold;
+}
+
+hr {
+  margin: 8px 0;
+}
+
+.btn-checkout {
+  width: 100%;
+    color:bg-custom-dark;
+
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<th:block th:replace="fragments/header :: header"></th:block>
+
+<div class="py-10">kjjnjn</div>
+
+<main>
+  <!-- MAIN COVER -->
+  <div class="relative bg-cover bg-center" style="background-image: url('/images/cart.jpg'); height: 500px;">
+    <div class="flex items-center justify-center h-full">
+      <h1 class="text-3xl font-bold text-white md:text-5xl font-boogaloo">Cart</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="cart-content">
+      <!-- cart header -->
+      <div class="cart-header">
+
+        <!-- cart items -->
+        <div class="cart-items">
+          <!-- item -->
+          <div class="cart-item">
+            <div class="item-details">
+              <div class="item-image">
+                <img src="/images/menu2.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
+              </div>
+
+              <div class="item-info">
+                <div class="item-name">Product Name</div>
+                <div class="item-description">
+                  <span>Size: Medium Crust: Wheat Thin Crust</span><br>
+                  <span>Short Description</span>
+                </div>
+              </div>
+
+              <div class="item-price">Price</div>
+              <div class="item-quantity">
+                <div class="quantity-controls">
+                  <button class="quantity-decrease" onclick="decreaseQuantity(this)">-</button>
+                  <span id="quantity">1</span>
+                  <button class="quantity-increase" onclick="increaseQuantity(this)">+</button>
+                </div>
+              </div>
+
+              <div class="item-total">Total Price</div>
+            </div>
+
+            <div class="item-actions">
+              <button class="btn-delete">Delete</button>
+            </div>
+          </div>
+          <!-- item end -->
+        </div>
+        <div class="cart-items">
+          <!-- item -->
+          <div class="cart-item">
+            <div class="item-details">
+              <div class="item-image">
+                <img src="/images/menu2.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
+              </div>
+
+              <div class="item-info">
+                <div class="item-name">Product Name</div>
+                <div class="item-description">
+                  <span>Size: Medium Crust: Wheat Thin Crust</span><br>
+                  <span>Short Description</span>
+                </div>
+              </div>
+
+              <div class="item-price">Price</div>
+              <div class="item-quantity">
+                <div class="quantity-controls">
+                  <button class="quantity-decrease" onclick="decreaseQuantity(this)">-</button>
+                  <span id="quantity">1</span>
+                  <button class="quantity-increase" onclick="increaseQuantity(this)">+</button>
+                </div>
+              </div>
+
+              <div class="item-total">Total Price</div>
+            </div>
+
+            <div class="item-actions">
+              <button class="btn-delete">Delete</button>
+            </div>
+          </div>
+          <!-- item end -->
+        </div>
+
+      </div>
+
+      <div class="cart-summary">
+        <div class="summary-box">
+          <h2>Cart Total</h2>
+          <div class="summary-details">
+            <span>Subtotal</span>
+            <span>$0.00</span>
+          </div>
+          <div class="summary-details">
+            <span>Discount</span>
+            <span>0.00</span>
+          </div>
+          <hr>
+          <div class="summary-details">
+            <span>Grand Total</span>
+            <span>$0.00</span>
+          </div>
+          <button class="btn-checkout bg-custom-dark rounded-full h-18 " style="bg-custom-dark">Proceed To Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function increaseQuantity(button) {
+      const quantityElement = button.parentNode.querySelector('#quantity');
+      let quantity = parseInt(quantityElement.textContent);
+      quantity++;
+      quantityElement.textContent = quantity;
+      updateTotals();
+    }
+
+    function decreaseQuantity(button) {
+      const quantityElement = button.parentNode.querySelector('#quantity');
+      let quantity = parseInt(quantityElement.textContent);
+      if (quantity > 1) {
+        quantity--;
+        quantityElement.textContent = quantity;
+        updateTotals();
+      }
+    }
+
+    function updateTotals() {
+      // This function will handle the update of totals based on quantity changes.
+      // Implement the logic as needed, or leave as a placeholder.
+    }
+  </script>
+
+</main>
+
+<!-- Footer -->
+<th:block th:replace="fragments/footer :: footer"></th:block>
+
+</body>
+</html>

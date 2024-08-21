@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <link href="/css/tailwind.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Add Product</title>
+</head>
+<body>
+<div class="flex h-screen">
+  <aside  style="width: 25%;" class="w-1/4 bg-black text-white">
+    <th:block th:replace="fragments/admin-sidebar :: div"></th:block>
+  </aside>
+  <div style="width: 75%;" class="flex-1 flex flex-col ">
+    <header class="w-full bg-white">
+      <th:block th:replace="fragments/admin-header :: div"></th:block>
+    </header>
+    <div class="md:w-1/2 bg-opacity-50 rounded-lg md:bg-white md:rounded-none z-10">
+      <div class="md:text-start mx-10 mt-10 text-center">
+        <h1 class="text-primaryColor font-anton md:text-5xl text-3xl">Register</h1>
+        <h1 class="text-black font-boogaloo text-2xl mt-5">Register with your email and password</h1>
+      </div>
+      <div class="w-10/12 mx-10">
+
+        <!-- Registration Form -->
+        <form action="/saveuser" method="post" class="md:bg-transparent md:px-0 md:py-0 bg-orange-50 bg-opacity-75 px-10 rounded-xl">
+          <div class="md:mt-10 mt-0">
+            <label for="name" class="font-boogaloo text-gray-400 text-xl">Name</label>
+            <input type="text" id="name" name="name" class="w-full p-3 mt-2 text-black bg-white shadow-lg rounded-2xl text-2xl font-boogaloo placeholder-gray-500" placeholder="User Name" />
+          </div>
+
+          <div class="mt-5">
+            <label for="email" class="font-boogaloo text-gray-400 text-xl">Email Address</label>
+            <input type="email" id="email" name="email" class="w-full p-3 mt-2 text-black bg-white shadow-lg rounded-2xl text-2xl font-boogaloo placeholder-gray-500" placeholder="savorupoh@gmail.com" />
+          </div>
+
+          <div class="mt-5">
+            <label class="font-boogaloo text-gray-400 text-xl">Password</label>
+            <div class="relative">
+              <input type="password" id="passwordInput" name="password" class="w-full p-3 mt-2 rounded-2xl text-black bg-white shadow-lg placeholder-gray-500 font-bold" placeholder="**********" />
+              <button type="button" onclick="togglePassword('passwordInput')" class="absolute inset-y-0 right-0 px-2 py-1.5 text-gray-500 focus:outline-none">
+                <img id="toggleIconPassword" src="/images/hide.png" alt="Toggle Password" class="w-8 h-8 mt-2">
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <label class="font-boogaloo text-gray-400 text-xl">Confirm Password</label>
+            <div class="relative">
+              <input type="password" id="confirmPasswordInput" name="confirm_password" class="w-full p-3 mt-2 rounded-2xl text-black bg-white shadow-lg placeholder-gray-500 font-bold" placeholder="**********" />
+              <button type="button" onclick="togglePassword('confirmPasswordInput')" class="absolute inset-y-0 right-0 px-2 py-1.5 text-gray-500 focus:outline-none">
+                <img id="toggleIconConfirmPassword" src="/images/hide.png" alt="Toggle Password" class="w-8 h-8 mt-2">
+              </button>
+            </div>
+          </div>
+
+          <div class="flex flex-col w-7/12">
+            <label class="font-boogaloo text-gray-400 text-xl">User Role</label>
+            <select name="role" id="user_role" class="w-full p-3 mt-2 text-black bg-white shadow-lg rounded-2xl text-2xl font-boogaloo placeholder-gray-500">
+              <option value="">Select Role</option>
+              <th:block th:each="role : ${roles}">
+                <option th:value="${role}" th:text="${role}">Role</option>
+              </th:block>
+            </select>
+          </div>
+
+          <div class="flex flex-col w-7/12">
+            <label class="font-boogaloo text-gray-400 text-xl">Branch</label>
+            <select name="branch" id="branch" class="w-full p-3 mt-2 text-black bg-white shadow-lg rounded-2xl text-2xl font-boogaloo placeholder-gray-500">
+              <option value="">Select Branch</option>
+              <th:block th:each="branch : ${branches}">
+                <option th:value="${branch.id}" th:text="${branch.branchName}">Branch Name</option>
+              </th:block>
+            </select>
+          </div>
+
+          <button type="submit" class="w-full px-20 py-3 text-white bg-dark-yellow rounded-3xl mt-5 font-boogaloo md:text-2xl">SIGN UP</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function togglePassword(inputId) {
+      var passwordInput = document.getElementById(inputId);
+      var toggleIcon = document.getElementById('toggleIcon' + (inputId === 'passwordInput' ? 'Password' : 'ConfirmPassword'));
+
+      if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          toggleIcon.src = "/images/view.png";
+      } else {
+          passwordInput.type = "password";
+          toggleIcon.src = "/images/hide.png";
+      }
+  }
+</script>
+</body>
+</html>

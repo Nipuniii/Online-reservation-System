@@ -16,9 +16,12 @@ public class OfferService {
     public Offer saveOffer(Offer offer) {
         return offerRepository.save(offer);
     }
+
     public List<Offer> getAllOffers() {
         return offerRepository.findAll();
     }
 
-
+    public Offer findOfferById(Long id) {
+        return offerRepository.findById(id).orElse(null);
+    }
 }

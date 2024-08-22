@@ -11,9 +11,9 @@ import java.util.List;
 
 @Service
 public class BranchService {
+
     @Autowired
     private BranchRepository branchRepository;
-
 
     @Autowired
     private BranchFacilitiesRepository branchFacilitiesRepository;
@@ -26,12 +26,16 @@ public class BranchService {
         return branchRepository.findAll(); // Fetch all branches from the repository
     }
 
+    public Branch findBranchById(Long id) {
+        return branchRepository.findById(id).orElse(null);
+    }
 
-
-//    save branches and facilities
     public void saveBranchFacilities(Long branchId, List<Long> facilitiesIds) {
         Branch branch = branchRepository.findById(branchId)
                 .orElseThrow(() -> new RuntimeException("Branch not found"));
+
+        // Clear existing facilities for this branch
+        branchFacilitiesRepository.deleteAllByBranch(branch);
 
         for (Long facilityId : facilitiesIds) {
             BranchFacilities branchFacilities = new BranchFacilities();
@@ -40,7 +44,4 @@ public class BranchService {
             branchFacilitiesRepository.save(branchFacilities);
         }
     }
-
-
-
 }

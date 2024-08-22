@@ -18,24 +18,24 @@
         <div class=" mt-24">
             <div class="mx-10 md:mb-4">
                 <h1 class="text-4xl font-bold font-anton text-dark-yellow md:mt-40">ADD <span class="text-black">Facilities</span></h1>
-                <form id="productForm mt-24" >
+                <form id="facilitiesForm" action="/addfacilities" method="POST">
                     <div class="flex flex-row gap-4 md:gap-8 mt-10">
-                        <div class="w-7/12 ">
-                            <label>Facilites Name</label>
-                            <input type="text" placeholder=">Facilites Name" name=">Facilites Name" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                            <div class="text-lg text-red-600" id="product_nameError"></div>
+                        <div class="w-7/12">
+                            <label>Facilities Name</label>
+                            <input type="text" name="facilitiesName" placeholder="Facilities Name" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            <div class="text-lg text-red-600" id="facilitiesNameError"></div>
                         </div>
 
                         <div class="w-7/12">
-                            <label >Short Description</label>
-                            <input name="Short Description" id="Short Description" type="number" placeholder="Short Description" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
-                            <div id="sellingPriceError" class="mt-2 text-red-500"></div>
+                            <label>Short Description</label>
+                            <input name="shortDescription" id="shortDescription" type="text" placeholder="Short Description" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            <div id="shortDescriptionError" class="mt-2 text-red-500"></div>
                         </div>
                     </div>
 
-
-                    <button type="button" onclick="validatePrices()" class="items-center mt-4 p-2 bg-dark-yellow flex justify-center md:w-[7%] w-[150px] rounded-lg text-white md:mt-4 text-center">Submit</button>
+                    <button type="submit" class="items-center mt-4 p-2 bg-dark-yellow flex justify-center md:w-[7%] w-[150px] rounded-lg text-white md:mt-4 text-center">Submit</button>
                 </form>
+
             </div>
         </div>
     </div>
@@ -84,7 +84,7 @@
             sellingPriceError.textContent = "Selling price must be lower than or equal to the price.";
         } else {
             // Perform form submission or further actions
-            document.getElementById('productForm').submit();
+            document.getElementById('facilitiesForm').submit();
         }
     }
 </script>

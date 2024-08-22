@@ -25,13 +25,15 @@
                             <div class="text-lg text-red-600" id="product_nameError"></div>
                         </div>
 
-                        <div class="flex flex-col w-7/12">
-                            <label for="category">Select Branch</label>
-                            <select name="category_id" id="category" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                        <div class="w-7/12">
+                            <label for="branch">Select Branch</label>
+                            <select name="branch_id" id="branch" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 <option value="">Select Branch</option>
-                                <!-- Category options should be populated here -->
+                                <th:block th:each="branchFacility : ${branchFacilitiesList}">
+                                    <option th:value="${branchFacility.branch.id}" th:text="${branchFacility.branch.branchName}"></option>
+                                </th:block>
                             </select>
-                            <div class="text-lg text-red-600 mt-2" id="category_idError"></div>
+                            <div class="text-lg text-red-600 mt-2" id="branch_idError"></div>
                         </div>
                     </div>
 
@@ -44,12 +46,13 @@
                             <div id="priceError" class="mt-2 text-red-500"></div>
                         </div>
                         <div class="w-7/12">
-                            <label>Selling Price</label>
-                            <select name="availability" id="offer" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            <label for="offer">Offer</label>
+                            <select name="offer_id" id="offer" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 <option value="">Select Offer</option>
-                                <option value="">5%</option>
-                                <option value="">10%</option>
-                                <!-- Category options should be populated here -->
+                                <!-- Offer options should be populated here -->
+                                <th:block th:each="offer : ${offersList}">
+                                    <option th:value="${offer.id}" th:text="${offer.offerPercentage} + '%'"></option>
+                                </th:block>
                             </select>
                             <div id="sellingPriceError" class="mt-2 text-red-500"></div>
                         </div>
@@ -60,7 +63,7 @@
 
 
                         <div class="flex flex-col w-7/12">
-                            <label for="category">Availability</label>
+                            <label>Availability</label>
                             <select name="availability" id="availability" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
                                 <option value="">Select Branch</option>
                                 <option value="">Available</option>

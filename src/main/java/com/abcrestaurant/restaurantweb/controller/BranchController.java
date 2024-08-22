@@ -41,8 +41,5 @@ public class BranchController {
         return "admin/branch/listbranch"; // Ensure this view exists
     }
 
-    @GetMapping("/addbranchfacilities")
-    public String addBranchFacilitiesPage() {
-        return "admin/branch/branch&facilities"; // Ensure this view exists
-    }
+
 }

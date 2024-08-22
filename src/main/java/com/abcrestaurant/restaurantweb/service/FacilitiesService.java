@@ -5,6 +5,8 @@ import com.abcrestaurant.restaurantweb.repository.FacilitiesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FacilitiesService {
 
@@ -14,4 +16,9 @@ public class FacilitiesService {
     public Facilities saveFacilities(Facilities facilities) {
         return facilitiesRepository.save(facilities);
     }
+
+    public List<Facilities> getAllFacilities() {
+        return facilitiesRepository.findAll();
+    }
+
 }

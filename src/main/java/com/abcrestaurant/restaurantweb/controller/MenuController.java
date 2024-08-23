@@ -1,5 +1,6 @@
 package com.abcrestaurant.restaurantweb.controller;
 
+import com.abcrestaurant.restaurantweb.model.Branch;
 import com.abcrestaurant.restaurantweb.model.Menu;
 import com.abcrestaurant.restaurantweb.service.BranchFacilitiesService;
 import com.abcrestaurant.restaurantweb.service.BranchService;
@@ -17,6 +18,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MenuController {
@@ -110,4 +114,22 @@ public class MenuController {
     public String listMenuPage() {
         return "admin/menu/productlist";
     }
+
+
+    @GetMapping("/menu")
+    public String showAllBranches(Model model) {
+        List<Branch> branches = branchService.findAll(); // Fetch all branches
+        Map<Branch, List<Menu>> branchMenuMap = new HashMap<>();
+
+        for (Branch branch : branches) {
+            List<Menu> menuItems = menuService.findByBranch(branch); // Fetch menu items for each branch
+            branchMenuMap.put(branch, menuItems);
+        }
+
+        model.addAttribute("branchMenuMap", branchMenuMap);
+        return "user/menu"; // Path to your Thymeleaf template
+    }
+
+
+
 }

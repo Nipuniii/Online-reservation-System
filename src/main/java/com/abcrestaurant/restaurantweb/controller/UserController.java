@@ -30,10 +30,10 @@ public class UserController {
         return  "user/reservation";
     }
 
-    @GetMapping("/menu")
-    public String showaMenuPage(){
-        return  "user/menu";
-    }
+//    @GetMapping("/menu")
+//    public String showaMenuPage(){
+//        return  "user/menu";
+//    }
 
 
 

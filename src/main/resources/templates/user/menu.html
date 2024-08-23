@@ -32,280 +32,44 @@
         <h2 class="text-4xl font-bold text-gray-900 text-center mb-4">Branches</h2>
         <p class="text-center text-gray-500 mb-12">Explore our locations across Sri Lanka.</p>
 
-        <!-- Branches Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Kandy Branch -->
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-<!--                <img th:src="@{/Images/kandy.jpg}" alt="Kandy Branch" class="w-full h-64 object-cover" />-->
-                <div class="p-6">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Kandy</h3>
-                    <p class="text-gray-600 mb-6">Our Kandy branch offers a serene dining experience in the heart of the hills.</p>
 
-                    <!-- Meals for Kandy -->
-                    <div class="container mx-auto p-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                            <!-- Product Card 1 -->
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu2.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/cart}" class="text-white">Order</a>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu3.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/order}" class="text-white">Order</a>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu1.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/order}" class="text-white">Order</a>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu2.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/order}" class="text-white">Order</a>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu3.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/order}" class="text-white">Order</a>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu1.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/order}" class="text-white">Order</a>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Additional Product Cards as needed -->
-                        </div>
-                    </div>
-
-                </div>
-            </div>
 
             <!-- Galle Branch -->
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-<!--                <img th:src="@{/Images/galle.jpg}" alt="Galle Branch" class="w-full h-64 object-cover" />-->
-                <div class="p-6">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Galle</h3>
-                    <p class="text-gray-600 mb-6">Enjoy a meal with a view of the ocean at our Galle branch.</p>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="p-6">
+                <!-- Display all branches and their menu items -->
+                <div th:each="entry : ${branchMenuMap}">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3" th:text="${entry.key.location}"></h3>
+                    <p class="text-gray-600 mb-6">Description of the branch location goes here.</p>
 
-                    <!-- Meals for Galle -->
                     <div class="container mx-auto p-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                            <!-- Accommodation Card 1 -->
-                            
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu2.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
+                            <!-- Product Cards -->
+                            <div th:each="menuItem : ${entry.value}" class="bg-white rounded-lg border border-gray-300 shadow-md">
+                                <img th:src="@{${menuItem.image1}}" th:alt="${menuItem.productName}" class="w-full object-cover rounded-t-lg">
                                 <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/order}" class="text-white">Order</a>
-                                    </button>
+                                    <h2 th:text="${menuItem.productName}" class="text-xl font-bold"></h2>
+                                    <p th:text="${menuItem.description}" class="text-gray-700"></p>
+                                    <p th:text="'$' + ${menuItem.price}" class="text-gray-700"></p>
+                                    <p th:text="${menuItem.availability}" class="text-gray-700"></p>
+                                    <p th:if="${menuItem.offer != null}" th:text="'Offer: ' + ${menuItem.offer.offerPercentage} + '%' " class="text-gray-500"></p>
+                                    <a th:href="@{/cart}" class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4 inline-block">Order</a>
                                 </div>
                             </div>
-
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu3.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/order}" class="text-white">Order</a>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu1.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/order}" class="text-white">Order</a>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu2.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/order}" class="text-white">Order</a>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu3.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/order}" class="text-white">Order</a>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                                <img src="/images/menu1.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                                <div class="p-4">
-                                    <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                    <p class="text-gray-700">500 ml | $15.00</p>
-                                    <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                    <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                        <a th:href="@{/order}" class="text-white">Order</a>
-                                    </button>
-                                </div>
-                            </div>
-
-
-
                         </div>
                     </div>
+                </div>
+
+                <!-- Error message display -->
+                <div th:if="${error}" class="text-red-600">
+                    <p th:text="${error}"></p>
                 </div>
             </div>
         </div>
 
-        <!-- Colombo Branch (Full-Width) -->
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden mt-12">
-<!--            <img th:src="@{/Images/colombo.jpg}" alt="Colombo Branch" class="w-full h-64 object-cover" />-->
-            <div class="p-6">
-                <h3 class="text-3xl font-semibold text-gray-800 mb-3">Colombo</h3>
-                <p class="text-gray-600 mb-6">Visit our Colombo branch for an upscale dining experience in the capital city.</p>
 
-                <!-- Meals for Colombo -->
-                <div class="container mx-auto p-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        <!-- Accommodation Card 1 -->
-                        <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                            <img src="/images/menu2.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                <p class="text-gray-700">500 ml | $15.00</p>
-                                <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                    <a th:href="@{/order}" class="text-white">Order</a>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                            <img src="/images/menu3.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                <p class="text-gray-700">500 ml | $15.00</p>
-                                <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                    <a th:href="@{/order}" class="text-white">Order</a>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                            <img src="/images/menu1.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                <p class="text-gray-700">500 ml | $15.00</p>
-                                <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                    <a th:href="@{/order}" class="text-white">Order</a>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                            <img src="/images/menu2.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                <p class="text-gray-700">500 ml | $15.00</p>
-                                <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                    <a th:href="@{/order}" class="text-white">Order</a>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                            <img src="/images/menu3.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                <p class="text-gray-700">500 ml | $15.00</p>
-                                <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                    <a th:href="@{/order}" class="text-white">Order</a>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                            <img src="/images/menu1.jpg" alt="Organic Dog Shampoo" class="w-full object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h2 class="text-xl font-bold">Organic Dog Shampoo</h2>
-                                <p class="text-gray-700">500 ml | $15.00</p>
-                                <p class="text-gray-500">Offer: Free shipping on orders above $50. Keep your dog's coat shiny and healthy.</p>
-                                <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                    <a th:href="@{/order}" class="text-white">Order</a>
-                                </button>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+
 
 
 </main>

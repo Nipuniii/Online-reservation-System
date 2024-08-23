@@ -2,12 +2,14 @@ package com.abcrestaurant.restaurantweb.service;
 
 import com.abcrestaurant.restaurantweb.model.Branch;
 import com.abcrestaurant.restaurantweb.model.BranchFacilities;
+import com.abcrestaurant.restaurantweb.model.Menu;
 import com.abcrestaurant.restaurantweb.repository.BranchFacilitiesRepository;
 import com.abcrestaurant.restaurantweb.repository.BranchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BranchService {
@@ -44,4 +46,12 @@ public class BranchService {
             branchFacilitiesRepository.save(branchFacilities);
         }
     }
+
+    public Branch findById(Long branchId) {
+        return branchRepository.findById(branchId).orElse(null);
+    }
+    public List<Branch> findAll() {
+        return branchRepository.findAll();
+    }
+
 }

@@ -1,10 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <link href="/css/tailwind.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Product</title>
 </head>
 <body>
+<div class="flex h-screen">
+    <aside style="width: 25%;" class="w-1/4 bg-black text-white">
+        <th:block th:replace="fragments/admin-sidebar :: div"></th:block>
+    </aside>
+    <div style="width: 75%;" class="flex-1 flex flex-col">
+        <header class="w-full bg-white">
+            <th:block th:replace="fragments/admin-header :: div"></th:block>
+        </header>
+        <div class="container mt-24">
+            <div class="mx-10 md:mb-4">
+                <h1 class="text-4xl font-bold font-anton text-dark-yellow md:mt-40">EDIT <span class="text-black">Product</span></h1>
+                <form action="/editmenu" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id" th:value="${menu.id}">
+                    <div class="flex flex-row gap-4 mt-10 md:gap-8">
+                        <div class="w-7/12">
+                            <label for="product_name">Product Name</label>
+                            <input type="text" placeholder="Product Name" name="product_name" id="product_name" th:value="${menu.productName}" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            <div class="text-lg text-red-600" id="product_nameError"></div>
+                        </div>
 
+                        <div class="w-7/12">
+                            <label for="branch">Select Branch</label>
+                            <select name="branch_id" id="branch" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                <option value="">Select Branch</option>
+                                <option th:each="branch : ${branchesList}" th:value="${branch.id}" th:text="${branch.branchName}" th:selected="${branch.id == menu.branch.id}"></option>
+                            </select>
+                            <div class="text-lg text-red-600 mt-2" id="branch_idError"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row gap-4 md:gap-8 md:mt-4">
+                        <div class="w-7/12">
+                            <label for="price">Price</label>
+                            <input name="price" id="price" type="number" placeholder="Price" th:value="${menu.price}" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                            <div id="priceError" class="mt-2 text-red-500"></div>
+                        </div>
+                        <div class="w-7/12">
+                            <label for="offer">Offer</label>
+                            <select name="offer_id" id="offer" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                <option value="">Select Offer</option>
+                                <option th:each="offer : ${offersList}" th:value="${offer.id}" th:text="${offer.offerPercentage}" th:selected="${offer.id == menu.offer.id}"></option>
+                            </select>
+                            <div id="sellingPriceError" class="mt-2 text-red-500"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row gap-4 md:gap-8 md:mt-4">
+                        <div class="flex flex-col w-7/12">
+                            <label for="availability">Availability</label>
+                            <select name="availability" id="availability" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                                <option value="">Select Availability</option>
+                                <option value="available" th:selected="${menu.availability == 'available'}">Available</option>
+                                <option value="non-available" th:selected="${menu.availability == 'non-available'}">Non-Available</option>
+                            </select>
+                            <div class="text-lg text-red-600 mt-2" id="availabilityError"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col mt-4 md:mt-8">
+                        <label for="description">Description</label>
+                        <input name="description" id="description" placeholder="Your Message" th:value="${menu.description}" class="w-full p-2 border border-gray-800 rounded-lg opacity-60 md:h-36">
+                        <div id="descriptionError" class="mt-2 text-red-500"></div>
+                    </div>
+
+                    <div class="flex flex-row gap-4 md:mt-4">
+                        <div class="flex flex-row py-10">
+                            <div class="w-1/4 max-w-md p-4 mx-auto bg-white rounded-lg shadow-md">
+                                <h1 class="mb-4 text-xl font-semibold">Product Image 1</h1>
+                                <div class="p-4 mb-4 border-2 border-gray-400 border-dashed">
+                                    <input type="file" id="image_1" name="image_1" accept="image/*" class="hidden" onchange="loadPreview(1)">
+                                    <label for="image_1" class="cursor-pointer">
+                                        <img id="preview_image_1" th:src="@{${menu.image1}}" class="w-[100%] aspect-square object-cover">
+                                        <div id="info_image_1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 mx-auto mb-4 text-gray-700">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                            </svg>
+                                            <h5 class="mb-2 text-xl font-bold tracking-tight text-center text-gray-700">
+                                                Upload Photo
+                                            </h5>
+                                            <p class="text-sm font-normal text-gray-400 md:px-6">
+                                                Photo size should be less than <b class="text-gray-600">2mb</b> and should be in <b class="text-gray-600">JPG, PNG, or GIF</b> format.
+                                            </p>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div id="image_1Error" class="mt-2 text-red-500"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="items-center mt-4 p-2 bg-dark-yellow flex justify-start md:w-[7%] w-[150px] rounded-lg text-white md:mt-4 text-center">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function loadPreview(index) {
+        const inputFile = document.getElementById('image_' + index);
+        const previewImage = document.getElementById('preview_image_' + index);
+        const infoBox = document.getElementById('info_image_' + index);
+        const file = inputFile.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewImage.classList.remove('hidden');
+                infoBox.classList.add('hidden');
+            }
+            reader.readAsDataURL(file);
+        } else {
+            previewImage.classList.add('hidden');
+            infoBox.classList.remove('hidden');
+        }
+    }
+</script>
 </body>
 </html>

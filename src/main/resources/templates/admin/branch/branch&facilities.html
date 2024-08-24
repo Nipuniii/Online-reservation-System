@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <link href="/css/tailwind.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Branch & Facilities</title>
+</head>
+<body>
+<div class="flex h-screen">
+  <aside style="width: 25%;" class="w-1/4 bg-black text-white">
+    <th:block th:replace="fragments/admin-sidebar :: div"></th:block>
+  </aside>
+
+  <div style="width: 75%;" class="flex-1 flex flex-col">
+    <header class="w-full bg-white">
+      <th:block th:replace="fragments/admin-header :: div"></th:block>
+    </header>
+    <div class="mt-24">
+      <div class="mx-10 md:mb-4">
+        <h1 class="text-4xl font-bold font-anton text-dark-yellow md:mt-40">ADD <span class="text-black">Branch</span></h1>
+
+        <!-- Form for Branch and Facilities -->
+        <form id="productForm" method="post" th:action="@{/addbranchfacilities}">
+          <div class="flex flex-row gap-4 md:gap-8 mt-10">
+            <div class="flex flex-col w-7/12">
+              <label for="branch">Select Branch</label>
+              <select name="branch_id" id="branch" class="w-full p-2 border border-gray-800 rounded-lg opacity-60">
+                <option value="">Select a branch</option>
+                <!-- Dynamically populate the branches -->
+                <th:block th:each="branch : ${branchesList}">
+                  <option th:value="${branch.id}" th:text="${branch.branchName}"></option>
+                </th:block>
+              </select>
+            </div>
+
+
+            <!-- Facilities Selection -->
+            <div class="w-7/12">
+              <div class="mb-4 font-semibold text-lg">Select all Facilities that you want the hotel to include:</div>
+              <div id="selects" class="grid grid-cols-2 gap-2">
+                <th:block th:each="facility : ${facilitiesList}">
+                  <label class="text-slate-200 font-bold mt-2 text-sm py-2 px-4 rounded-full border border-pink-600">
+                    <input class="hidden" type="checkbox" name="facilities" th:value="${facility.id}">
+                    <span th:text="${facility.facilitiesName}"></span>
+                  </label>
+                </th:block>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="items-center mt-4 p-2 bg-dark-yellow flex justify-center md:w-[7%] w-[150px] rounded-lg text-white">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Handle click on label to toggle the selected checkbox background color
+  document.querySelectorAll('#selects label').forEach(label => {
+    label.addEventListener('click', function () {
+      const checkbox = label.querySelector('input[type="checkbox"]');
+      checkbox.checked = !checkbox.checked;  // Toggle checkbox
+      if (checkbox.checked) {
+        label.classList.add('bg-black', 'text-white');  // Apply selected styles
+      } else {
+        label.classList.remove('bg-black', 'text-white');  // Remove selected styles
+      }
+    });
+  });
+</script>
+</body>
+</html>

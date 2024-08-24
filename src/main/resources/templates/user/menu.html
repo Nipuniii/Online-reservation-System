@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <link href="/css/tailwind.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('search');
+            const branches = document.querySelectorAll('.branch');
+
+            searchInput.addEventListener('input', (event) => {
+                const searchTerm = event.target.value.toLowerCase();
+                const [locationTerm, productTerm] = searchTerm.split(' ').filter(term => term);
+
+                branches.forEach(branch => {
+                    const branchName = branch.querySelector('.branch-name').textContent.toLowerCase();
+                    const menuItems = branch.querySelectorAll('.menu-item');
+                    let showBranch = false;
+                    let showProduct = false;
+
+                    // Check if the branch name matches the location search term
+                    if (locationTerm && branchName.includes(locationTerm)) {
+                        showBranch = true;
+                    } else {
+                        // Check if any menu items match the product search term
+                        menuItems.forEach(item => {
+                            const productName = item.querySelector('.product-name').textContent.toLowerCase();
+                            if (productTerm && productName.includes(productTerm)) {
+                                showProduct = true;
+                                showBranch = true;
+                            }
+                        });
+                    }
+
+                    // Display or hide branch based on the search term
+                    if (showBranch) {
+                        branch.style.display = '';
+                        // Filter menu items within the branch
+                        menuItems.forEach(item => {
+                            const productName = item.querySelector('.product-name').textContent.toLowerCase();
+                            item.style.display = productTerm && !productName.includes(productTerm) ? 'none' : '';
+                        });
+                    } else {
+                        branch.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<!-- Header -->
+<th:block th:replace="fragments/header :: header"></th:block>
+<div class="py-10">kjjnjn</div>
+<main>
+    <!-- MAIN COVER -->
+    <div class="relative bg-cover bg-center" style="background-image: url('/static/images/menu4.jpg'); height: 500px;">
+        <!-- Dark Overlay -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 1;"></div>
+
+        <!-- Content Here -->
+        <div class="flex items-center justify-center h-full relative" style="z-index: 2;">
+            <h1 class="text-3xl font-bold text-white md:text-5xl font-boogaloo">Menu</h1>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+        <div class="mt-10">
+            <input type="text" id="search" placeholder="Search branches and products..." class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm">
+        </div>
+
+        <!-- Section Header -->
+        <h2 class="text-4xl font-bold text-gray-900 text-center mb-4 mt-10">Branches</h2>
+        <p class="text-center text-gray-500 mb-12">Explore our locations across Sri Lanka.</p>
+
+        <!-- Branches Section -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="p-6">
+                <!-- Display all branches and their menu items -->
+                <div th:each="entry : ${branchMenuMap}" class="branch">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3 branch-name" th:text="${entry.key.location}"></h3>
+                    <p class="text-gray-600 mb-6">Description of the branch location goes here.</p>
+
+                    <div class="container mx-auto p-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                            <!-- Product Cards -->
+                            <div th:each="menuItem : ${entry.value}" class="bg-white rounded-lg border border-gray-300 shadow-md menu-item">
+                                <img th:src="@{${menuItem.image1}}" th:alt="${menuItem.productName}" class="w-full h-64 object-cover rounded-t-lg">
+                                <div class="p-4">
+                                    <h2 th:text="${menuItem.productName}" class="text-xl font-bold product-name"></h2>
+                                    <p th:text="${menuItem.description}" class="text-gray-700"></p>
+                                    <p th:text="'$' + ${menuItem.price}" class="text-gray-700"></p>
+                                    <p th:text="${menuItem.availability}" class="text-gray-700"></p>
+                                    <p th:if="${menuItem.offer != null}" th:text="'Offer: ' + ${menuItem.offer.offerPercentage} + '%' " class="text-gray-500"></p>
+                                    <a th:href="@{/cart}" class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4 inline-block">Order</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error message display -->
+                <div th:if="${error}" class="text-red-600">
+                    <p th:text="${error}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<th:block th:replace="fragments/footer :: footer"></th:block>
+
+</body>
+</html>

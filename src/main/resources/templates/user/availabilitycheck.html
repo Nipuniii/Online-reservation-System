@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Hotel Reservation - Availability Check</title>
+    <!-- Include your styles from Vite -->
+    <link href="/css/tailwind.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</head>
+
+<body class="flex flex-col bg-white">
+
+<!-- Header -->
+<th:block th:replace="fragments/header :: header"></th:block>
+
+<div class="flex-grow mt-10 px-10">
+    <div class="w-full mb-4">
+        <div id="mainImageContainer" class="w-full bg-gray-100">
+            <!-- Main image -->
+            <img id="mainImage" class="w-full h-[800px] object-cover rounded-lg" th:src="@{/images/about1.jpg}" alt="Room Image" />
+        </div>
+    </div>
+
+    <div class="w-full mb-4 ">
+        <!-- Gallery images with onclick function to set as the main image -->
+        <div class="flex gap-14 flex items-center justify-center  ">
+            <img onclick="changeMainImage(this)"
+                 th:src="@{/images/carasol1.jpg}" alt="Gallery Image 1"
+                 class="w-64 h-64 object-cover rounded-lg cursor-pointer" />
+            <img onclick="changeMainImage(this)"
+                 th:src="@{/images/carsol2.jpg}" alt="Gallery Image 2"
+                 class="w-64 h-64  object-cover rounded-lg cursor-pointer" />
+            <img onclick="changeMainImage(this)"
+                 th:src="@{/images/carsol3.jpg}" alt="Gallery Image 3"
+                 class="w-64 h-64  object-cover rounded-lg cursor-pointer" />
+
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-24">
+        <!-- Reservation Details Section (50% width) -->
+        <div class="grid justify-between grid-cols-2 gap-4 text-xl">
+
+            <div>
+                <p><strong>Room Rate:</strong> $200 per night</p>
+
+
+
+                <h3 class=" font-bold"> Features</h3>
+                <p>You're eligible for a Genius discount at 7Seasons Apartments Budapest! To save at this property, all you have to do is sign in.
+
+                    Featuring a 24-hour reception, the 7Seasons Apartments offers you spacious 1- to 3-bedroom apartments in the heart of Budapest, only 100 metres from Deak Ferenc tér, which is a major public transport hub.
+
+                    Wireless internet access is available in all apartments free of charge. Daily cleaning and shuttle service can be requested at a surcharge in advance.
+
+                    All apartments feature a kitchen to prepare your own meals, but you can also find lots of cafés, restaurants and a 24-hour supermarket in the immediate vicinity of 7Seasons Apartments.
+
+                    St. Stephen's Basilica, the Great Synagogue, the State Opera House and the Hungarian Parliament are easily reachable on foot.
+
+                    Families particularly like the location — they rated it 9.7 for a stay with kids.
+
+                </p>
+
+            </div>
+        </div>
+
+
+
+        <!-- Search bar Section -->
+        <div class="search-bar">
+            <div class="p-6 grid grid-cols-1 bg-custom-dark shadow-lg flex items-center justify-center">
+                <div class="flex flex-col md:flex-row gap-7 flex items-center justify-center">
+                    <!-- Search Fields -->
+                    <div class="pt-6 flex flex-col w-[250px]">
+                        <label for="check-in" class="block text-white font-bold">Check-in:</label>
+                        <input type="date" id="check-in" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+
+                    <div class="pt-6 flex flex-col w-[250px]">
+                        <label for="check-out" class="block text-white font-bold">Check-out:</label>
+                        <input type="date" id="check-out" class="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+
+                    <div class="pt-6 flex flex-col w-[250px]">
+                        <label for="rooms" class="text-white font-bold">Rooms</label>
+                        <select id="rooms" class="p-2 border rounded">
+                            <option value="1">1 Room</option>
+                            <option>example</option>
+                            <option>example</option>
+                            <option>example</option>
+                        </select>
+                    </div>
+
+                    <div class="pt-6 flex flex-col w-[250px]">
+                        <label for="guests" class="text-white font-bold">Guests</label>
+                        <select id="guests" class="p-2 border rounded">
+                            <option value="1">1 Adult, 0 Child</option>
+                            <option>example</option>
+                            <option>example</option>
+                            <option>example</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col pt-10">
+                        <button class="p-2 border bg-dark-yellow rounded-md text-white">Check Availability</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accommodation Details Table -->
+        <div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
+            <h2 class="text-2xl font-bold mb-6">Accommodation Details</h2>
+
+            <table class="w-full border-collapse border border-gray-300">
+                <thead>
+                <tr>
+                    <th class="border border-gray-300 p-3 text-left">Accommodation Type</th>
+                    <th class="border border-gray-300 p-3 text-left">Number of Guests</th>
+                    <th class="border border-gray-300 p-3 text-left">Today's Price</th>
+                    <th class="border border-gray-300 p-3 text-left">Your Choices</th>
+                    <th class="border border-gray-300 p-3 text-left">Select Amount</th>
+                    <th class="border border-gray-300 p-3 text-left">Reserve</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="border border-gray-300 p-3">
+                        <strong>1 sofa bed and 1 large double bed</strong><br>
+                        Entire studio<br>
+                        37 m²<br>
+                        Private kitchen<br>
+                        Private bathroom<br>
+                        Balcony<br>
+                        Inner courtyard view<br>
+                        Air conditioning<br>
+                        Dishwasher<br>
+                        Flat-screen TV<br>
+                        Coffee machine<br>
+                        Free WiFi
+                    </td>
+                    <td class="border border-gray-300 p-3">
+                        1, 2, 3, 4
+                    </td>
+                    <td class="border border-gray-300 p-3">
+                        <strong>LKR 53,639</strong><br>
+                        LKR 42,910 (Current Price)<br>
+                        +LKR 1,635 taxes and charges<br>
+                        <span class="text-green-600">20% off Getaway Deal</span>
+                    </td>
+                    <td class="border border-gray-300 p-3">
+                        <strong>Very good breakfast LKR 5,911</strong><br>
+                        Includes high-speed internet<br>
+                        Total cost to cancel<br>
+                        No prepayment needed – pay at the property<br>
+                        10-20% discount available
+                    </td>
+                    <td class="border border-gray-300 p-3">
+                        <select class="p-2 border rounded">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
+                    <td class="border border-gray-300 p-3">
+                        <strong>
+                            1 room for
+                            LKR 25,945<br>
+                            +LKR 1,708 taxes and charges</strong><br>
+                        <span class="text-green-600">20% off Getaway Deal</span>
+                        <button class="p-2 border bg-dark-yellow rounded-md text-white">Reserve</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Search bar end -->
+
+
+    </div>
+
+
+
+
+
+    <!-- Button to increase the size of the main image -->
+
+</div>
+
+<script>
+    function changeMainImage(clickedImage) {
+        // Get the source of the clicked image
+        var newImageSrc = clickedImage.src;
+
+        // Set the source of the main image to the clicked image
+        document.getElementById('mainImage').src = newImageSrc;
+    }
+
+    function increaseImageSize() {
+        // Get the main image element
+        var mainImage = document.getElementById('mainImage');
+
+        // Increase the height of the main image
+        var currentHeight = parseInt(window.getComputedStyle(mainImage).height);
+        mainImage.style.height = (currentHeight + 100) + 'px'; // Increase height by 100px
+    }
+</script>
+<script>
+    document.getElementById('availability-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Simulating availability check
+        let isAvailable = Math.random() > 0.5; // Randomly determine availability
+
+        if (isAvailable) {
+            alert('Room is available!');
+        } else {
+            alert('Room is not available.');
+        }
+    });
+</script>
+
+<!-- Footer -->
+<th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+
+</html>

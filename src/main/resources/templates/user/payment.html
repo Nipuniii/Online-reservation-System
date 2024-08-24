@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservation</title>
+  <link href="/css/tailwind.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</head>
+
+<style>
+  /* Radio button css */
+  .custom-radio-btn {
+      width: 26px;
+      height: 26px;
+      border: 2px solid #760505;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+  }
+
+  .custom-radio-btn .checkmark {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #760505;
+      opacity: 0;
+      align-items: center;
+  }
+
+  .custom-radio-btn input {
+      display: none;
+  }
+
+  .custom-radio-btn input:checked+.checkmark {
+      opacity: 1;
+      display: inline-block;
+  }
+
+  /* Checkbox css */
+  .checkmark-check {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      border-radius: 3px;
+      position: relative;
+      border: 1px solid #656565;
+      transition: background-color 0.3s;
+  }
+  #check:checked ~ .checkmark-check {
+      background-color: #760505;
+      border: none;
+  }
+  .checkmark-check::after {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 13px;
+      border-right: 3px solid #fff;
+      border-bottom: 3px solid #fff;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotateZ(40deg);
+      opacity: 0;
+      transition: all 0.3s;
+  }
+  #check:checked ~ .checkmark-check::after {
+      opacity: 1;
+  }
+</style>
+
+<body>
+
+<!-- Header -->
+<th:block th:replace="fragments/header :: header"></th:block>
+
+<div style="padding: 40px 0;">kjjnjn</div>
+
+<main>
+  <!-- MAIN COVER -->
+  <div style="position: relative; background-size: cover; background-position: center; background-image: url('/static/images/about2.jpg'); height: 500px;">
+    <!-- Dark Overlay -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 1;"></div>
+
+    <!-- Content Here -->
+    <div style="display: flex; align-items: center; justify-content: center; height: 100%; position: relative; z-index: 2;">
+      <h1 style="font-size: 48px; font-weight: bold; color: white; font-family: 'Boogaloo';">Payment</h1>
+    </div>
+  </div>
+
+  <!-- Payment Form and Summary -->
+  <div style="max-width: 1200px; margin: 40px auto; display: flex; flex-direction: column;">
+    <div style="display: flex; flex-direction: column; width: 100%; gap: 48px; flex-wrap: wrap;">
+      <div style="flex: 1;">
+        <h1 style="font-size: 40px; font-family: 'Anton'; color: #primaryColor; padding-bottom: 32px;">Payment <span style="color: black;">Method</span></h1>
+        <form action="" style="font-family: 'Boogaloo'; font-size: 22px; padding-bottom: 20px;">
+
+          <!-- Custom Radio Buttons -->
+
+
+          <div style="display: flex; margin-bottom: 1.25rem; flex-direction: column;">
+            <div style="display: flex; width: 100%; margin-bottom: 1rem;">
+              <label style="display: flex; align-items: center; width: 100%;">
+                <input type="radio" name="sample" style="display: none;">
+                <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #e2e8f0; margin-right: 2.5rem; position: relative;"></span>
+                <div style="display: flex; align-items: center; width: 100%;">
+                  <span style="font-size: 1.5rem; color: #718096; white-space: nowrap; max-height: 5rem;">Cash on delivery</span>
+                </div>
+              </label>
+            </div>
+            <div style="display: flex; width: 100%; margin-bottom: 1rem;">
+              <label style="display: flex; align-items: center; width: 100%;">
+                <input type="radio" name="sample" style="display: none;">
+                <span style="display: inline-block; width: 20px; height: 20px; border-radius: 50%; background-color: #e2e8f0; margin-right: 2.5rem; position: relative;"></span>
+                <div style="display: flex; align-items: center; width: 100%;">
+                  <span style="font-size: 1.5rem; color: #718096; white-space: nowrap;">Card Payment</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <style>
+            input[type="radio"]:checked + span {
+              background-color: black; /* Change this to your desired color */
+            }
+          </style>
+
+
+          <!-- End Custom Radio Buttons -->
+
+          <!-- Input Boxes -->
+          <div>
+            <div style="margin-top: 12px; padding-top: 12px;">
+              <label style="font-family: 'Boogaloo'; color: #4B5563; font-size: 24px; padding-bottom: 32px;">Cardholder name</label>
+              <input type="text" placeholder="Nimshi Silva" style="width: 100%; margin-top: 12px; padding: 12px; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05); opacity: 0.7;">
+            </div>
+            <div style="margin-top: 12px; padding-top: 16px;">
+              <label style="font-family: 'Boogaloo'; color: #4B5563; font-size: 24px; padding-top: 16px;">Card number</label>
+              <input type="text" placeholder="0000-1111-2222-3333" style="width: 100%; margin-top: 12px; padding: 12px; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05); opacity: 0.7;">
+            </div>
+            <div style="display: flex; gap: 32px; margin-top: 12px; padding-top: 12px;">
+              <div style="flex: 1;">
+                <label style="display: block; font-family: 'Boogaloo'; color: #4B5563; font-size: 24px; padding-bottom: 16px;">Expiry date</label>
+                <input type="text" placeholder="10/23" style="width: 100%; padding: 12px; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05); opacity: 0.7;">
+              </div>
+              <div style="flex: 1;">
+                <label style="display: block; font-family: 'Boogaloo'; color: #4B5563; font-size: 24px; padding-bottom: 16px;">CSV</label>
+                <input type="text" placeholder="000" style="width: 100%; padding: 12px; border: 1px solid #E5E7EB; border-radius: 8px; box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05); opacity: 0.7;">
+              </div>
+            </div>
+          </div>
+          <!-- End Input Boxes -->
+
+        </form>
+
+      </div>
+      <div style="flex: 1;">
+        <h1 style="font-size: 40px; font-family: 'Anton'; color: #primaryColor; padding-bottom: 32px;">Summary</h1>
+
+        <!-- Order Summary Table -->
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <th style="font-family: 'Boogaloo'; font-size: 24px; color: #4B5563; text-align: left; padding: 12px 0;">Product</th>
+            <th style="font-family: 'Boogaloo'; font-size: 24px; color: #4B5563; text-align: left; padding: 12px 0;">Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <td style="font-family: 'Boogaloo'; font-size: 20px; color: #4B5563; padding: 12px 0;">ABC</td>
+            <td style="font-family: 'Boogaloo'; font-size: 20px; color: #4B5563; padding: 12px 0;">Rs.10000.00</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <td style="font-family: 'Boogaloo'; font-size: 20px; color: #4B5563; padding: 12px 0;">Rooms</td>
+            <td style="font-family: 'Boogaloo'; font-size: 20px; color: #4B5563; padding: 12px 0;">Rs.25000.00</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <td style="font-family: 'Boogaloo'; font-size: 20px; color: #4B5563; padding: 12px 0;">Adults:2</td>
+            <td style="font-family: 'Boogaloo'; font-size: 20px; color: #4B5563; padding: 12px 0;">Rs.2000.00</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E5E7EB;">
+            <td style="font-family: 'Boogaloo'; font-size: 20px; color: #4B5563; padding: 12px 0;">Total</td>
+            <td style="font-family: 'Boogaloo'; font-size: 20px; color: #4B5563; padding: 12px 0;">Rs.37000.00</td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- End Order Summary Table -->
+      </div>
+    </div>
+    <!-- Proceed Button -->
+    <div style="margin-top: 48px; display: flex; justify-content: flex-end;">
+      <a href="" style="display: inline-block; padding: 12px 36px; background-color: #830823; color: white; font-family: 'Boogaloo'; font-size: 22px; border-radius: 8px; text-decoration: none;">Proceed</a>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<th:block th:replace="fragments/footer :: footer"></th:block>
+
+</body>
+</html>

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -109,10 +110,11 @@ public class MenuController {
 
         return "redirect:/addmenu";
     }
-
     @GetMapping("/listmenu")
-    public String listMenuPage() {
-        return "admin/menu/productlist";
+    public String listMenuPage(Model model) {
+        List<Menu> menuItems = menuService.getAllMenuItems(); // Fetch all menu items
+        model.addAttribute("menuItems", menuItems); // Add them to the model
+        return "admin/menu/productllist";
     }
 
 
@@ -131,5 +133,79 @@ public class MenuController {
     }
 
 
+    @GetMapping("/editmenu/{id}")
+    public String editMenuPage(@PathVariable("id") Long id, Model model) {
+        Menu menu = menuService.findById(id);
+        if (menu == null) {
+            return "redirect:/error"; // Redirect to an error page or handle the not found case
+        }
+        model.addAttribute("menu", menu);
+        model.addAttribute("offersList", offerService.getAllOffers());
+        model.addAttribute("branchesList", branchService.getAllBranches());
+        return "admin/menu/editproduct";
+    }
+
+
+    @PostMapping("/editmenu")
+    public String updateMenu(
+            @RequestParam("id") Long id,
+            @RequestParam("product_name") String productName,
+            @RequestParam("branch_id") Long branchId,
+            @RequestParam("price") Double price,
+            @RequestParam("offer_id") Long offerId,
+            @RequestParam("availability") String availability,
+            @RequestParam("description") String description,
+            @RequestParam(value = "image_1", required = false) MultipartFile image1) {
+
+        Menu menu = menuService.findById(id); // Fetch the existing menu
+        if (menu != null) {
+            menu.setProductName(productName);
+            menu.setBranch(branchService.findBranchById(branchId));
+            menu.setPrice(price);
+            menu.setOffer(offerService.findOfferById(offerId));
+            menu.setAvailability(availability);
+            menu.setDescription(description);
+
+            if (image1 != null && !image1.isEmpty()) {
+                try {
+                    // Handle image upload similarly to the save method
+                    String datePath = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+                    File directory = new File(IMAGE_DIR + datePath);
+
+                    if (!directory.exists() && !directory.mkdirs()) {
+                        System.err.println("Failed to create directory: " + directory.getAbsolutePath());
+                    }
+
+                    String fileName = image1.getOriginalFilename();
+                    if (fileName != null) {
+                        File file = new File(directory, fileName);
+                        image1.transferTo(file);
+
+                        String filePath = "/images/" + datePath + "/" + fileName;
+                        menu.setImage1(filePath);
+                    } else {
+                        System.err.println("Filename is null");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            menuService.saveMenu(menu); // Save the updated menu
+        }
+
+        return "redirect:/listmenu";
+    }
+
+
+
+    @PostMapping("/deleteproduct/{id}")
+    public String deleteMenu(@PathVariable("id") Long id) {
+        Menu menu = menuService.findById(id);
+        if (menu != null) {
+            menuService.deleteMenu(id); // Call a method to delete the menu item
+        }
+        return "redirect:/listmenu"; // Redirect to the menu list page
+    }
 
 }

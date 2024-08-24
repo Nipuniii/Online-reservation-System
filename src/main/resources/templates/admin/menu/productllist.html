@@ -53,16 +53,22 @@
                                     Product Name
                                 </th>
                                 <th style="padding: 10px 20px; border-bottom: 2px solid white;">
-                                    Category
+                                    Branch
                                 </th>
                                 <th style="padding: 10px 5px; border-bottom: 2px solid white;">
                                     Price
                                 </th>
                                 <th style="padding: 10px 40px; border-bottom: 2px solid white;">
-                                    Discount
+                                    offer
                                 </th>
                                 <th style="padding: 10px 40px; border-bottom: 2px solid white;">
-                                    Selling Price
+                                    Availability
+                                </th>
+                                <th style="padding: 10px 40px; border-bottom: 2px solid white;">
+                                    Description
+                                </th>
+                                <th class="hidden " style="padding: 10px 40px; border-bottom: 2px solid white;">
+                                    Image
                                 </th>
                                 <th style="padding: 10px 30px; border-bottom: 2px solid white; border-top-right-radius: 25px; border-bottom-right-radius: 25px;">
                                     Action
@@ -72,24 +78,34 @@
 
                             <tbody id="tableBody">
                             <!-- Repeat this block for each product -->
-                            <tr style="text-align: center; color: black; border-bottom: 1px solid #E2E8F0;">
+                            <tr th:each="menuItem : ${menuItems}" style="text-align: center; color: black; border-bottom: 1px solid #E2E8F0;">
                                 <td style="padding: 10px 40px; color: #830823;">
-                                    <u>Product ID Here</u>
+                                    <u th:text="${menuItem.id}">Product ID Here</u>
                                 </td>
-                                <td style="padding: 10px;">Product Name Here</td>
-                                <td style="padding: 10px 40px;">Category Name Here</td>
-                                <td style="padding: 10px;">Price Here</td>
-                                <td style="padding: 10px;">Discount % Here</td>
-                                <td style="padding: 10px;">Selling Price Here</td>
+                                <td style="padding: 10px;" th:text="${menuItem.productName}">Product Name Here</td>
+                                <td style="padding: 10px 40px;" th:text="${menuItem.branch.branchName}">Branch Name Here</td>
+                                <td style="padding: 10px;" th:text="${menuItem.price}">Price Here</td>
+                                <td style="padding: 10px;" th:text="${menuItem.offer.offerPercentage}">Offer % Here</td>
+                                <td style="padding: 10px;" th:text="${menuItem.availability}">Availability Here</td>
+                                <td style="padding: 10px;" th:text="${menuItem.description}">Description Here</td>
+                                <td class="hidden" style="padding: 10px;">
+                                    <img th:src="@{${menuItem.image1}}" alt="Image" style="width: 100px; height: auto;">
+                                </td>
                                 <td style="padding: 10px 30px;">
                                     <div style="display: flex; gap: 20px;">
-                                        <a href="/editproduct/1" style="padding: 5px 10px; color: white; background-color: green; border-radius: 5px;">Edit</a>
-                                        <button type="submit" style="padding: 5px 10px; color: white; background-color: red; border-radius: 5px;">Delete</button>
+                                        <!-- Update href to pass menuItem details -->
+                                        <a th:href="@{/editmenu/{id}(id=${menuItem.id})}" style="padding: 5px 10px; color: white; background-color: green; border-radius: 5px;">Edit</a>
+
+                                        <form th:action="@{/deleteproduct/{id}(id=${menuItem.id})}" method="post" style="display:inline;">
+                                            <button type="submit" style="padding: 5px 10px; color: white; background-color: red; border-radius: 5px;">Delete</button>
+                                        </form>
+
                                     </div>
                                 </td>
                             </tr>
                             <!-- End product block -->
                             </tbody>
+
                         </table>
                     </div>
 

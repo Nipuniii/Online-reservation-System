@@ -24,4 +24,13 @@ public class MenuService {
     public List<Menu> findByBranch(Branch branch) {
         return menuRepository.findByBranch(branch);
     }
+    public Menu findById(Long id) {
+        return menuRepository.findById(id).orElse(null);
+    }
+
+    public void deleteMenu(Long id) {
+        menuRepository.deleteById(id);
+    }
+
+
 }

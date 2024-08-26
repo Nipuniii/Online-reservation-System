@@ -53,7 +53,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user, Model model) {
-        // Register the user
+        // Directly save the user with plain text password (not recommended)
         userService.registerUser(user);
         return "redirect:/"; // Redirect to login page after successful registration
     }

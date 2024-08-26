@@ -1,13 +1,24 @@
 package com.abcrestaurant.restaurantweb.controller;
 
+import com.abcrestaurant.restaurantweb.model.Branch;
+import com.abcrestaurant.restaurantweb.service.BranchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class UserController {
+
+    @Autowired
+    private BranchService branchService;
     @GetMapping("/home")
-    public String showHomePage() {
-        return "user/home"; // Points to src/main/resources/templates/auth/login.html
+    public String homePage(Model model) {
+        List<Branch> branches = branchService.getAllBranches();
+        model.addAttribute("branches", branches);
+        return "user/home"; // Ensure this view exists
     }
 
     @GetMapping("/contactus")

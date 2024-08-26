@@ -321,51 +321,28 @@ prev.addEventListener("click", goPrev);
         </div>
             <div class="container mx-auto p-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    <!-- Accommodation Card 1 -->
-                    <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                        <img src="/images/accommodation1.png" alt="Deluxe Room" class="w-full  object-cover rounded-t-lg">
-                        <div class="p-4">
-                            <h2 class="text-xl font-bold">Deluxe Room</h2>
-                            <p class="text-gray-700">40 m² | 2 Guests | 1 Bed</p>
-                            <p class="text-gray-500">A spacious and elegantly furnished suite offering a separate living area, bedroom, and luxurious amenities, perfect for those seeking added comfort and style during their stay.</p>
-                            <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                <a th:href="@{/availbility}" class="text-white">Check Availability</a>
-                            </button>
+                    <!-- Loop through each branch and display its image and location -->
+                    <div th:each="branch : ${branches}" class="bg-white rounded-lg border border-gray-300 shadow-md">
+                        <!-- Display branch image -->
+                        <img th:src="@{${branch.branchImage}}" alt="Branch Image" class="w-full object-cover rounded-t-lg">
 
+                        <div class="p-4">
+                            <!-- Display branch name -->
+                            <h2 class="text-xl font-bold" th:text="${branch.branchName}">Branch Name</h2>
+
+                            <!-- Display branch location -->
+                            <p class="text-gray-700" th:text="${branch.location}">Branch Location</p>
+
+                            <!-- Availability button -->
+                            <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
+                                <a href="#" class="text-white">Check Availability</a>
+                            </button>
                         </div>
                     </div>
-
-                    <!-- Accommodation Card 2 -->
-                    <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                        <img src="/images/accommodation2.png" alt="Superior Room" class="w-full object-cover rounded-t-lg">
-                        <div class="p-4">
-                            <h2 class="text-xl font-bold">Superior Room</h2>
-                            <p class="text-gray-700">30 m² | 2 Guests | 1 Bed</p>
-                            <p class="text-gray-500">A cozy and stylish room designed for comfort and relaxation, featuring modern amenities and a charming ambiance, ideal for a memorable stay.</p>
-                            <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                <a th:href="@{/availbility}" class="text-white">Check Availability</a>
-                            </button>
-
-                        </div>
-                    </div>
-
-                    <!-- Accommodation Card 3 -->
-                    <div class="bg-white rounded-lg border border-gray-300 shadow-md">
-                        <img src="/images/accommodation3.png" alt="Executive Suite" class="w-full object-cover rounded-t-lg">
-                        <div class="p-4">
-                            <h2 class="text-xl font-bold">Executive Suite</h2>
-                            <p class="text-gray-700">60 m² | 4 Guests | 2 Beds</p>
-                            <p class="text-gray-500">An elegant suite with separate living and sleeping areas, offering premium amenities and exceptional comfort, perfect for families or groups.</p>
-                            <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                <a th:href="@{/availbility}" class="text-white">Check Availability</a>
-                            </button>
-
-                        </div>
-                    </div>
-
-
                 </div>
             </div>
+
+
 
         </div>
 

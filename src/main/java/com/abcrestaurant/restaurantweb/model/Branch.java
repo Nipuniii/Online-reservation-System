@@ -19,6 +19,10 @@ public class Branch {
     @Column(nullable = false)
     private String location;
 
+    // Add new field for the branch image path
+    @Column(nullable = true) // Set as true in case it's optional
+    private String branchImage;
+
     // Getters and setters...
     public Long getId() {
         return id;
@@ -42,5 +46,13 @@ public class Branch {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getBranchImage() {
+        return branchImage;
+    }
+
+    public void setBranchImage(String branchImage) {
+        this.branchImage = branchImage;
     }
 }

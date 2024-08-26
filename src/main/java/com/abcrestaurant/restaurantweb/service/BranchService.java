@@ -20,18 +20,17 @@ public class BranchService {
     @Autowired
     private BranchFacilitiesRepository branchFacilitiesRepository;
 
+
+
     public Branch saveBranch(Branch branch) {
         return branchRepository.save(branch);
     }
-
     public List<Branch> getAllBranches() {
         return branchRepository.findAll(); // Fetch all branches from the repository
     }
-
     public Branch findBranchById(Long id) {
         return branchRepository.findById(id).orElse(null);
     }
-
     public void saveBranchFacilities(Long branchId, List<Long> facilitiesIds) {
         Branch branch = branchRepository.findById(branchId)
                 .orElseThrow(() -> new RuntimeException("Branch not found"));
@@ -46,7 +45,6 @@ public class BranchService {
             branchFacilitiesRepository.save(branchFacilities);
         }
     }
-
     public Branch findById(Long branchId) {
         return branchRepository.findById(branchId).orElse(null);
     }

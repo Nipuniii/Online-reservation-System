@@ -308,11 +308,11 @@ prev.addEventListener("click", goPrev);
         <div class="flex items-center justify-center ">
             <div class="bg-white p-8 rounded-lg  text-center">
                 <!-- Header Text with Dark Yellow Color -->
-                <h1 class="text-4xl font-bold text-dark-yellow  mb-4">Explore Our Accomadtion</h1>
+                <h1 class="text-4xl font-bold text-dark-yellow  mb-4">Explore Our Branches & Facilities</h1>
 
                 <!-- Main Content -->
                 <p class="text-lg leading-relaxed text-gray-700 text-center px-32 font-bold">
-                    "Experience unmatched comfort and elegance in our luxurious accommodations at Royal Palace. Each room is meticulously designed to provide a haven of relaxation and sophistication, ensuring a truly unforgettable stay."
+                    "Experience unmatched comfort and elegance in our Facilities. Each room is meticulously designed to provide a haven of relaxation and sophistication, ensuring a truly unforgettable stay."
                 </p>
 
             </div>
@@ -321,10 +321,10 @@ prev.addEventListener("click", goPrev);
         </div>
             <div class="container mx-auto p-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    <!-- Loop through each branch and display its image and location -->
-                    <div th:each="branch : ${branches}" class="bg-white rounded-lg border border-gray-300 shadow-md">
+                    <!-- Loop through each branch and display its image, location, and facilities -->
+                    <div th:each="branch : ${branches}" class="bg-white rounded-lg border border-gray-300 shadow-md max-w-xs mx-auto">
                         <!-- Display branch image -->
-                        <img th:src="@{${branch.branchImage}}" alt="Branch Image" class="w-full object-cover rounded-t-lg">
+                        <img th:src="@{${branch.branchImage}}" alt="Branch Image" class="w-full h-64 object-cover rounded-t-lg">
 
                         <div class="p-4">
                             <!-- Display branch name -->
@@ -332,6 +332,11 @@ prev.addEventListener("click", goPrev);
 
                             <!-- Display branch location -->
                             <p class="text-gray-700" th:text="${branch.location}">Branch Location</p>
+
+                            <!-- Display branch facilities -->
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span th:each="facility : ${branchFacilitiesMap[branch.id]}" class="bg-gray-200 px-3 py-1 rounded-full text-sm text-gray-700" th:text="${facility}"></span>
+                            </div>
 
                             <!-- Availability button -->
                             <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
@@ -341,6 +346,7 @@ prev.addEventListener("click", goPrev);
                     </div>
                 </div>
             </div>
+
 
 
 

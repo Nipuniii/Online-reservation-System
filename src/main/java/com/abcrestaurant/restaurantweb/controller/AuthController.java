@@ -3,6 +3,7 @@ package com.abcrestaurant.restaurantweb.controller;
 import com.abcrestaurant.restaurantweb.model.User;
 import com.abcrestaurant.restaurantweb.model.UserRole;
 import com.abcrestaurant.restaurantweb.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +26,14 @@ public class AuthController {
     @PostMapping("/")
     public String loginUser(@RequestParam("email") String email,
                             @RequestParam("password") String password,
+                            HttpSession session,
                             Model model) {
         User user = userService.findByEmail(email);
 
         if (user != null && user.getPassword().equals(password)) {
             // Authentication successful
+            session.setAttribute("loggedInUser", user); // Store user in session
+
             if (user.getRole() == UserRole.ADMIN || user.getRole() == UserRole.STAFF) {
                 return "redirect:/admindashboard"; // Redirect to Admin Dashboard
             } else if (user.getRole() == UserRole.USER) {
@@ -52,5 +56,11 @@ public class AuthController {
         // Register the user
         userService.registerUser(user);
         return "redirect:/"; // Redirect to login page after successful registration
+    }
+
+    @GetMapping("/logout")
+    public String logoutUser(HttpSession session) {
+        session.invalidate(); // Invalidate the session
+        return "redirect:/"; // Redirect to login page
     }
 }

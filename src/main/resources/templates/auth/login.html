@@ -25,7 +25,7 @@
     <div class="relative">
         <input type="password" name="password" id="password" class="w-full p-5 mt-2 rounded-2xl text-black bg-white shadow-lg placeholder-gray-500 font-bold" placeholder="**********">
         <button type="button" onclick="togglePassword('password')" class="absolute inset-y-0 right-0 px-2 py-1.5 text-gray-500 focus:outline-none">
-            <img id="toggleIcon" src="/images/hide.png" alt="Toggle Password" class="w-8 h-8 mt-4">
+            <img id="toggleIcon" src="/static/images/hide.png" alt="Toggle Password" class="w-8 h-8 mt-4">
         </button>
     </div>
 </div>
@@ -46,7 +46,7 @@
 
     <!-- Image Section -->
     <div class="md:w-1/2">
-        <img src="/images/hotelregister.jpg" alt="image" class="w-full  h-screen md:opacity-100 opacity-20 md:mt-0 -mt-[900px]" />
+        <img src="/static/images/hotelregister.jpg" alt="image" class="w-full  h-screen md:opacity-100 opacity-20 md:mt-0 -mt-[900px]" />
 
     </div>
 </div>
@@ -58,10 +58,10 @@
 
         if (passwordInput.type === "password") {
             passwordInput.type = "text";
-            toggleIcon.src = "/images/view.png";
+            toggleIcon.src = "/static/images/view.png";
         } else {
             passwordInput.type = "password";
-            toggleIcon.src = "/images/hide.png";
+            toggleIcon.src = "/static/images/hide.png";
         }
     }
 </script>

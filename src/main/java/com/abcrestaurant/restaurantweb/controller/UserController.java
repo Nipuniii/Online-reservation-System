@@ -1,8 +1,10 @@
 package com.abcrestaurant.restaurantweb.controller;
 
 import com.abcrestaurant.restaurantweb.model.Branch;
+import com.abcrestaurant.restaurantweb.model.User;
 import com.abcrestaurant.restaurantweb.service.BranchFacilitiesService;
 import com.abcrestaurant.restaurantweb.service.BranchService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,16 +21,25 @@ public class UserController {
     @Autowired
     private BranchService branchService;
     @GetMapping("/home")
-    public String homePage(Model model) {
+    public String homePage(HttpSession session, Model model) {
+        // Retrieve the logged-in user from the session
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+
+        if (loggedInUser != null) {
+            model.addAttribute("username", loggedInUser.getName()); // Pass username to the view
+        }
+
+        // Retrieve branch and facilities data
         List<Branch> branches = branchService.getAllBranches();
 
-        // Add facilities for each branch
+        // Map to store facilities for each branch
         Map<Long, List<String>> branchFacilitiesMap = new HashMap<>();
         for (Branch branch : branches) {
             List<String> facilities = branchFacilitiesService.getFacilitiesForBranch(branch.getId());
             branchFacilitiesMap.put(branch.getId(), facilities);
         }
 
+        // Add branch data to the model
         model.addAttribute("branches", branches);
         model.addAttribute("branchFacilitiesMap", branchFacilitiesMap);
 

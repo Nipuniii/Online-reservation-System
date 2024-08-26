@@ -10,4 +10,7 @@ import java.util.List;
 @Repository
 public interface BranchFacilitiesRepository extends JpaRepository<BranchFacilities, Long> {
     void deleteAllByBranch(Branch branch);
+
+    // Custom query method to find BranchFacilities by branchId
+    List<BranchFacilities> findByBranchId(Long branchId);
 }

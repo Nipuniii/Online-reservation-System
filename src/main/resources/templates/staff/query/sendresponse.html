@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <link href="/css/tailwind.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Response Queries</title>
+</head>
+<body>
+<div class="flex h-screen">
+  <aside style="width: 25%;" class="w-1/4 bg-black text-white">
+    <th:block th:replace="fragments/staff-sidebar :: div"></th:block>
+  </aside>
+
+  <div style="width: 75%;" class="flex-1 flex flex-col">
+    <header class="w-full bg-white">
+      <th:block th:replace="fragments/staff-header :: div"></th:block>
+    </header>
+    <form action="/sendresponse" method="post" class="flex flex-col md:w-4/5 w-3/4 mx-auto mt-24 font-boogaloo text-[20px]">
+      <input type="" name="email" th:value="${email}"/>
+      <div class="mt-4">
+        <textarea name="body" placeholder="Your Message" class="w-full p-2 border border-dark-yellow rounded-lg opacity-60 md:h-36"></textarea>
+      </div>
+      <button type="submit" class="mt-4 p-2 bg-dark-yellow rounded-lg text-white">Send Message</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

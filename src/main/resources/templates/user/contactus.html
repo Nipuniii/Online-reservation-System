@@ -28,28 +28,12 @@
         <p class="mx-auto text-center font-boogaloo md:w-1/2 md:mt-4">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
         </p>
-        <form action="#" method="post" class="flex flex-col md:w-4/5 w-3/4 mx-auto mt-4 font-boogaloo text-[20px]">
-          <div class="flex flex-col md:flex-row gap-4 md:gap-8">
-            <div class="w-full md:w-6/12">
-              <input type="text" name="name" placeholder="Name" class="w-full p-2 border border-dark-yellow rounded-lg opacity-60">
-            </div>
-            <div class="w-full md:w-6/12">
-              <input type="email" name="email" placeholder="Email" class="w-full p-2 border border-dark-yellow rounded-lg opacity-60">
-            </div>
-          </div>
-          <div class="flex flex-col md:flex-row gap-4 mt-4 md:gap-8">
-            <div class="w-full md:w-6/12">
-              <input type="text" name="phone" placeholder="Phone" class="w-full p-2 border border-dark-yellow rounded-lg opacity-60">
-            </div>
-            <div class="w-full md:w-6/12">
-              <input type="text" name="subject" placeholder="Subject" class="w-full p-2 border border-dark-yellow rounded-lg opacity-60">
-            </div>
-          </div>
-          <div class="mt-4">
-            <textarea name="body" placeholder="Your Message" class="w-full p-2 border border-dark-yellow rounded-lg opacity-60 md:h-36"></textarea>
-          </div>
-          <button type="submit" class="mt-4 p-2 bg-dark-yellow rounded-lg text-white">Send Message</button>
+        <form th:action="@{/query/delete/{id}(id=${query.id})}" method="post" style="display:inline;">
+          <button type="submit" style="padding: 5px 10px; color: white; background-color: red; border-radius: 5px;">
+            Delete
+          </button>
         </form>
+
       </div>
 
       <!-- Contact Information Section -->

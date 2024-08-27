@@ -19,6 +19,10 @@ public class ContactusController {
     private CustomerQueryService customerQueryService;
 
     @Autowired
+    private EmailService emailService; // Assuming you have an EmailService for sending emails
+
+    @GetMapping("/contactus")
+    public String showContactPage(Model model) {
         model.addAttribute("customerQuery", new CustomerQuery());
         return "user/contactus";
     }

@@ -47,10 +47,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/contactus")
-    public String showContactPage() {
-        return "user/contactus"; // Points to src/main/resources/templates/auth/login.html
-    }
+
 
     @GetMapping("/aboutus")
     public String showAboutPage(){

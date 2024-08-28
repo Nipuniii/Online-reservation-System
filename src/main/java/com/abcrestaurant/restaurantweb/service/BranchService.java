@@ -51,5 +51,8 @@ public class BranchService {
     public List<Branch> findAll() {
         return branchRepository.findAll();
     }
+    public Branch getBranchById(Long id) {
+        return branchRepository.findById(id).orElseThrow(() -> new RuntimeException("Branch not found"));
+    }
 
 }

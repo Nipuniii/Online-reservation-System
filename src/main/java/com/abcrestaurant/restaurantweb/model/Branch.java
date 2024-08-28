@@ -23,6 +23,15 @@ public class Branch {
     @Column(nullable = true) // Set as true in case it's optional
     private String branchImage;
 
+    public int getMaxTables() {
+        return maxTables;
+    }
+
+    public void setMaxTables(int maxTables) {
+        this.maxTables = maxTables;
+    }
+
+    private int maxTables;
     // Getters and setters...
     public Long getId() {
         return id;

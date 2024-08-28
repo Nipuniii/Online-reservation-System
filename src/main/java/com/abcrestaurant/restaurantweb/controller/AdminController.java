@@ -4,6 +4,7 @@ import com.abcrestaurant.restaurantweb.model.User;
 import com.abcrestaurant.restaurantweb.model.UserRole;
 import com.abcrestaurant.restaurantweb.service.BranchService;
 import com.abcrestaurant.restaurantweb.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,13 @@ public class AdminController {
     private BranchService branchService;
 
     @GetMapping("/admindashboard")
-    public String getDashboard() {
-        return "admin/admin-dashboard"; // Renders admin-dashboard.html
-    }
 
+    public String getDashboard(HttpSession session) {
+        if (!isAdmin(session)) {
+            return "redirect:/home";
+        }
+        return "admin/admin-dashboard";
+    }
 
 
 
@@ -52,6 +56,13 @@ public class AdminController {
         userService.saveUser(user);
         return "redirect:/success"; // Redirect to a success page or list of users
     }
+
+
+    private boolean isAdmin(HttpSession session) {
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        return loggedInUser != null && loggedInUser.getRole() == UserRole.ADMIN;
+    }
+
 }
 
 

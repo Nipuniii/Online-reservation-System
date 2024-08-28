@@ -34,8 +34,10 @@ public class AuthController {
             // Authentication successful
             session.setAttribute("loggedInUser", user); // Store user in session
 
-            if (user.getRole() == UserRole.ADMIN || user.getRole() == UserRole.STAFF) {
+            if (user.getRole() == UserRole.ADMIN) {
                 return "redirect:/admindashboard"; // Redirect to Admin Dashboard
+            } else if (user.getRole() == UserRole.STAFF) {
+                return "redirect:/staffdashboard"; // Redirect to Staff Dashboard
             } else if (user.getRole() == UserRole.USER) {
                 return "redirect:/home"; // Redirect to Home Page
             }
@@ -45,6 +47,7 @@ public class AuthController {
         model.addAttribute("error", "Invalid email or password");
         return "auth/login"; // Return to login page with error
     }
+
 
     @GetMapping("/register")
     public String showRegisterPage() {

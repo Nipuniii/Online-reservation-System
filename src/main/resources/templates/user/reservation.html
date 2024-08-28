@@ -6,6 +6,18 @@
     <link href="/css/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <style>
+        .alert {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+        }
+    </style>
 </head>
 <body>
 
@@ -34,18 +46,23 @@
             We are willing to help you make the reservation online to save your time and money, or you can call us directly through the customer service hotline:
             <span style="color: #C6A479; font-weight: bold;">225-88888</span>
         </p>
-
+        <!-- Display error message if available -->
+        <div th:if="${error}" class="alert alert-danger " role="alert">
+            <p th:text="${error}"></p>
+        </div>
+        <!-- Display success message -->
+        <div th:if="${success}" style="margin: 20px; padding: 10px; background-color: #D4EDDA; color: #155724; border: 1px solid #C3E6CB; border-radius: 4px;">
+            <span th:text="${success}"></span>
+        </div>
         <!-- Form Body -->
-        <form>
+        <form action="/reservation" method="post">
             <div style="display: grid; gap: 16px;">
                 <!-- Branch Selection -->
                 <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
                     <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-map-marker-alt"></i></span>
-                    <select style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                    <select name="branchId" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;" required>
                         <option value="">Select Branch</option>
-                        <option value="kandy">Kandy</option>
-                        <option value="colombo">Colombo</option>
-                        <option value="galle">Galle</option>
+                        <option th:each="branch : ${branches}" th:value="${branch.id}" th:text="${branch.branchName}"></option>
                     </select>
                 </div>
 
@@ -53,11 +70,11 @@
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                     <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
                         <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-user"></i></span>
-                        <input type="text" placeholder="Username" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                        <input type="text" name="username" placeholder="Username" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;" required>
                     </div>
                     <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
                         <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-envelope"></i></span>
-                        <input type="email" placeholder="Email" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                        <input type="email" name="email" placeholder="Email" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;" required>
                     </div>
                 </div>
 
@@ -65,16 +82,16 @@
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                     <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
                         <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-phone"></i></span>
-                        <input type="tel" placeholder="Phone" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                        <input type="tel" name="phone" placeholder="Phone" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;" required>
                     </div>
                     <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
                         <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-users"></i></span>
-                        <select style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
-                            <option>1 person</option>
-                            <option>2 people</option>
-                            <option>3 people</option>
-                            <option>4 people</option>
-                            <option>5 people</option>
+                        <select name="numberOfPeople" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;" required>
+                            <option value="1">1 person</option>
+                            <option value="2">2 people</option>
+                            <option value="3">3 people</option>
+                            <option value="4">4 people</option>
+                            <option value="5">5 people</option>
                         </select>
                     </div>
                 </div>
@@ -83,17 +100,17 @@
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                     <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
                         <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-calendar"></i></span>
-                        <input type="date" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                        <input type="date" name="reservationDate" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;" required>
                     </div>
                     <div style="display: flex; align-items: center; background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
                         <span style="color: #9ca3af; padding-right: 8px;"><i class="fas fa-clock"></i></span>
-                        <input type="time" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;">
+                        <input type="time" name="reservationTime" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;" required>
                     </div>
                 </div>
 
                 <!-- Message -->
                 <div style="background-color: #f3f4f6; padding: 8px; border-radius: 4px;">
-                    <textarea placeholder="Additional requests (optional)" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;" rows="3"></textarea>
+                    <textarea name="message" placeholder="Additional requests (optional)" style="width: 100%; background-color: #f3f4f6; border: none; outline: none;" rows="3"></textarea>
                 </div>
             </div>
 
@@ -104,6 +121,8 @@
                 </button>
             </div>
         </form>
+
+
     </div>
 
 

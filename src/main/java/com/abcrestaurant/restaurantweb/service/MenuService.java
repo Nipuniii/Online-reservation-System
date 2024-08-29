@@ -32,5 +32,7 @@ public class MenuService {
         menuRepository.deleteById(id);
     }
 
-
+    public long countAllMenuItems() {
+        return menuRepository.count();
+    }
 }

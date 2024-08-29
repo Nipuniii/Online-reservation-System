@@ -17,11 +17,40 @@
         <header class="w-full bg-white">
             <th:block th:replace="fragments/staff-header :: div"></th:block>
         </header>
-        <main  class="flex-1 p-4 mt-24">
-            <!-- Dashboard content -->
-            <h1 class="text-2xl font-bold">Welcome to the Staff Dashboard</h1>
-            <p>This is the dashboard content.</p>
-        </main>
+        <div style="">
+            <div style="display: grid; justify-content: center; flex: 1;">
+                <div style="display: flex; flex-wrap: wrap; flex: 1; margin-top: 8rem;">
+                    <!-- boxes -->
+                    <div style="flex: 1; width: 100%; padding: 1rem;">
+                        <h1 style="font-size: 40px; font-family: 'Anton', sans-serif; color: #primaryColor; margin-top: 1rem;">
+                            Welcome <span style="color: black;"></span>
+                        </h1>
+                        <div>
+                            <h3 style="font-size: 1.125rem; color: #4A4A4A; font-family: 'Boogaloo', cursive;">
+                                Staff Dashboard
+                            </h3>
+                        </div>
+
+                        <div style="margin-top: 2rem; display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); grid-template-columns: repeat(4, 1fr); gap: 1rem; row-gap: 4rem; height: 350px; font-family: 'Boogaloo', cursive;">
+                            <div style="display: grid; background-color: white; padding: 1rem; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 1rem; width: 195px; height: 100px; position: relative;">
+                                <h2 style="padding-bottom: 0.25rem; font-size: 0.875rem; font-weight: 600; color: black;">Total Query</h2>
+                                <img src="/static/images/increase.png" alt="Arrow" style="position: absolute; left: 160px; top: 1rem;">
+                                <h1 style="padding-bottom: 0.25rem; margin-top: 0.75rem; font-size: 1.25rem; font-weight: 700; color: black;">[[${totalQueryCount}]]</h1>
+                            </div>
+
+                            <div style="display: grid; background-color: white; padding: 1rem; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 1rem; width: 195px; height: 100px; position: relative;">
+                                <h2 style="padding-bottom: 0.25rem; font-size: 0.875rem; font-weight: 600; color: black;">Total Reservation</h2>
+                                <img  src="/static/images/solarred.png" alt="Arrow" style="position: absolute; left: 160px; top: 1rem;">
+                                <h1 style="padding-bottom: 0.25rem; margin-top: 0.75rem; font-size: 1.25rem; font-weight: 700; color: black;">[[${totalReservationCount}]]</h1>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
 </body>

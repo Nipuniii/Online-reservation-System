@@ -3,6 +3,8 @@ package com.abcrestaurant.restaurantweb.controller;
 import com.abcrestaurant.restaurantweb.model.User;
 import com.abcrestaurant.restaurantweb.model.UserRole;
 import com.abcrestaurant.restaurantweb.service.BranchService;
+import com.abcrestaurant.restaurantweb.service.MenuService;
+import com.abcrestaurant.restaurantweb.service.OfferService;
 import com.abcrestaurant.restaurantweb.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -23,12 +25,32 @@ public class AdminController {
     @Autowired
     private BranchService branchService;
 
+    @Autowired
+    private MenuService menuService;
+
+    @Autowired
+    private OfferService offerService;
+
     @GetMapping("/admindashboard")
 
-    public String getDashboard(HttpSession session) {
+    public String getDashboard(HttpSession session,Model model) {
         if (!isAdmin(session)) {
             return "redirect:/home";
         }
+        long totalMenuCount = menuService.countAllMenuItems();
+        model.addAttribute("totalMenuCount", totalMenuCount);
+
+        long totalBranchCount = branchService.getAllBranches().size();
+        model.addAttribute("totalBranchCount", totalBranchCount);
+
+
+        long totalUserCount = userService.getAllUsers().size();
+        model.addAttribute("totalUserCount", totalUserCount);
+
+
+
+        long totalOffer = offerService.getAllOffers().size();
+        model.addAttribute("totalOffer", totalOffer);
         return "admin/admin-dashboard";
     }
 
@@ -54,7 +76,7 @@ public class AdminController {
         }
         // Save the user to the database
         userService.saveUser(user);
-        return "redirect:/staffdashboard"; // Redirect to a success page or list of users
+        return "redirect:/admindashboard"; // Redirect to a success page or list of users
     }
 
 

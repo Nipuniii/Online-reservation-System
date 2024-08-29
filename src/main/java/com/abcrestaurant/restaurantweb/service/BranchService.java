@@ -55,4 +55,8 @@ public class BranchService {
         return branchRepository.findById(id).orElseThrow(() -> new RuntimeException("Branch not found"));
     }
 
+    public void deleteBranch(Long id) {
+        branchRepository.deleteById(id);
+    }
+
 }

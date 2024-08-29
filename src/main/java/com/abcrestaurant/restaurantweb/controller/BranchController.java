@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -94,10 +91,16 @@ public class BranchController {
 
     // View for listing branches
     @GetMapping("/listbranch")
-    public String listBranchesPage() {
+    public String listBranchesPage(Model model) {
+        List<Branch> branches = branchService.getAllBranches();
+        model.addAttribute("branches", branches);
         return "admin/branch/listbranch"; // Ensure this view exists
     }
 
-
+    @PostMapping("/deletebranch/{id}")
+    public String deleteBranch(@PathVariable("id") Long id, Model model) {
+        branchService.deleteBranch(id);
+        return "redirect:/listbranch"; // Redirect to the branch list page after deletion
+    }
 
 }

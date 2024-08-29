@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,9 +29,16 @@ public class FacilitiesController {
     @GetMapping("/listfacilities")
     public String showListFacilitiesPage(Model model) {
         // You might want to add facilities to the model for listing
-        // List<Facilities> facilitiesList = facilitiesService.getAllFacilities();
-        // model.addAttribute("facilitiesList", facilitiesList);
+         List<Facilities> facilitiesList = facilitiesService.getAllFacilities();
+         model.addAttribute("facilitiesList", facilitiesList);
         return "admin/facilities/listfacilities";
+    }
+    @PostMapping("/deletefacilities/{id}")
+    public String deleteFacilities(@PathVariable("id") Long id, Model model) {
+        facilitiesService.deleteFacilitiesById(id);
+        // Optionally add a success message or redirect
+        model.addAttribute("message", "Facilities deleted successfully");
+        return "redirect:/listfacilities"; // Redirect to the list page after deletion
     }
 
     @PostMapping("/addfacilities")

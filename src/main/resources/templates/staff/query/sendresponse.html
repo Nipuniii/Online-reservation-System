@@ -15,7 +15,7 @@
     <header class="w-full bg-white">
       <th:block th:replace="fragments/staff-header :: div"></th:block>
     </header>
-    <form action="/sendconfirmation" method="post" class="flex flex-col md:w-4/5 w-3/4 mx-auto mt-24 font-boogaloo text-[20px]">
+    <form action="/sendresponse" method="post" class="flex flex-col md:w-4/5 w-3/4 mx-auto mt-24 font-boogaloo text-[20px]">
       <input type="hidden" name="email" th:value="${email}"/> <!-- Pass the email -->
       <div class="mt-4">
         <textarea name="body" placeholder="Your Message" class="w-full p-2 border border-dark-yellow rounded-lg opacity-60 md:h-36"></textarea>

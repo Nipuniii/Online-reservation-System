@@ -54,7 +54,7 @@ public class AdminController {
         }
         // Save the user to the database
         userService.saveUser(user);
-        return "redirect:/success"; // Redirect to a success page or list of users
+        return "redirect:/staffdashboard"; // Redirect to a success page or list of users
     }
 
 

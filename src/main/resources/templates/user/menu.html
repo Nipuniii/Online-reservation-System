@@ -92,7 +92,7 @@
                                 <img th:src="@{${menuItem.image1}}" th:alt="${menuItem.productName}" class="w-full h-64 object-cover rounded-t-lg">
                                 <div class="p-4">
                                     <h2 th:text="${menuItem.productName}" class="text-xl font-bold product-name"></h2>
-                                    <p th:text="${menuItem.description}" class="text-gray-700"></p>
+<!--                                    <p th:text="${menuItem.description}" class="text-gray-700"></p>-->
                                     <p th:text="'$' + ${menuItem.price}" class="text-gray-700"></p>
                                     <p th:text="${menuItem.availability}" class="text-gray-700"></p>
                                     <p th:if="${menuItem.offer != null}" th:text="'Offer: ' + ${menuItem.offer.offerPercentage} + '%' " class="text-gray-500"></p>

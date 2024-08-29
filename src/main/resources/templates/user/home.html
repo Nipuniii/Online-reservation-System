@@ -324,7 +324,7 @@ prev.addEventListener("click", goPrev);
                     <!-- Loop through each branch and display its image, location, and facilities -->
                     <div th:each="branch : ${branches}" class="bg-white rounded-lg border border-gray-300 shadow-md max-w-xs mx-auto">
                         <!-- Display branch image -->
-                        <img th:src="@{${branch.branchImage}}" alt="Branch Image" class="w-full h-64 object-cover rounded-t-lg">
+                        <img th:src="@{${branch.branchImage}}" alt="Branch Image" class="w-full h-64 object-cover rounded-t-lg" style=" height: 200px;">
 
                         <div class="p-4">
                             <!-- Display branch name -->
@@ -338,10 +338,10 @@ prev.addEventListener("click", goPrev);
                                 <span th:each="facility : ${branchFacilitiesMap[branch.id]}" class="bg-gray-200 px-3 py-1 rounded-full text-sm text-gray-700" th:text="${facility}"></span>
                             </div>
 
-                            <!-- Availability button -->
-                            <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">
-                                <a href="#" class="text-white">Check Availability</a>
-                            </button>
+<!--                            &lt;!&ndash; Availability button &ndash;&gt;-->
+<!--                            <button class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4">-->
+<!--                                <a href="#" class="text-white">Check Availability</a>-->
+<!--                            </button>-->
                         </div>
                     </div>
                 </div>

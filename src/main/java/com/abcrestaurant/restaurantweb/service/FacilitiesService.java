@@ -21,4 +21,7 @@ public class FacilitiesService {
         return facilitiesRepository.findAll();
     }
 
+    public void deleteFacilitiesById(Long id) {
+        facilitiesRepository.deleteById(id);
+    }
 }

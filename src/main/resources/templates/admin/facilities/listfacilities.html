@@ -41,30 +41,28 @@
                                 <th style="padding: 10px 20px; border-bottom: 2px solid white;">
                                     Description
                                 </th>
-
                                 <th style="padding: 10px 30px; border-bottom: 2px solid white; border-top-right-radius: 25px; border-bottom-right-radius: 25px;">
                                     Action
                                 </th>
                             </tr>
                             </thead>
-
-                            <tbody id="tableBody">
-                            <!-- Repeat this block for each product -->
-                            <tr style="text-align: center; color: black; border-bottom: 1px solid #E2E8F0;">
+                            <tbody>
+                            <tr th:each="facility : ${facilitiesList}" style="text-align: center; color: black; border-bottom: 1px solid #E2E8F0;">
                                 <td style="padding: 10px 40px; color: #830823;">
-                                    <u>Product ID Here</u>
+                                    <u th:text="${facility.id}"></u>
                                 </td>
-                                <td style="padding: 10px;">Facilities Name Here</td>
-
-                                <td style="padding: 10px;">Description Here</td>
+                                <td style="padding: 10px;" th:text="${facility.facilitiesName}"></td>
+                                <td style="padding: 10px;" th:text="${facility.shortDescription}"></td>
                                 <td style="padding: 10px 30px;">
                                     <div style="display: flex; gap: 20px;">
-                                        <a href="/editproduct/1" style="padding: 5px 10px; color: white; background-color: green; border-radius: 5px;">Edit</a>
-                                        <button type="submit" style="padding: 5px 10px; color: white; background-color: red; border-radius: 5px;">Delete</button>
+
+                                        <form th:action="@{/deletefacilities/{id}(id=${facility.id})}" method="post" style="display:inline;">
+                                            <button type="submit" style="padding: 5px 10px; color: white; background-color: red; border-radius: 5px;">Delete</button>
+                                        </form>
+
                                     </div>
                                 </td>
                             </tr>
-                            <!-- End product block -->
                             </tbody>
                         </table>
                     </div>

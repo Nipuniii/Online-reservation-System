@@ -96,12 +96,24 @@
                                     <p th:text="'$' + ${menuItem.price}" class="text-gray-700"></p>
                                     <p th:text="${menuItem.availability}" class="text-gray-700"></p>
                                     <p th:if="${menuItem.offer != null}" th:text="'Offer: ' + ${menuItem.offer.offerPercentage} + '%' " class="text-gray-500"></p>
-                                    <a th:href="@{/cart}" class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4 inline-block">Order</a>
+
+                                    <form th:action="@{/add-to-cart}" method="post">
+                                        <input type="hidden" name="menuId" th:value="${menuItem.id}"/>
+
+                                        <div class="flex items-center mt-4">
+                                            <button type="button" class="bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-l focus:outline-none decrease-quantity">-</button>
+                                            <input type="number" name="quantity" value="1" min="1" class="border p-2 w-16 text-center quantity-input">
+                                            <button type="button" class="bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-r focus:outline-none increase-quantity">+</button>
+                                        </div>
+
+                                        <button type="submit" class="bg-dark-yellow text-white font-bold py-2 px-4 rounded mt-4 inline-block">Order</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <!-- Error message display -->
                 <div th:if="${error}" class="text-red-600">
@@ -111,7 +123,31 @@
         </div>
     </div>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const increaseButtons = document.querySelectorAll('.increase-quantity');
+    const decreaseButtons = document.querySelectorAll('.decrease-quantity');
 
+    increaseButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const input = this.parentNode.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            input.value = value + 1;
+        });
+    });
+
+    decreaseButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const input = this.parentNode.querySelector('.quantity-input');
+            let value = parseInt(input.value);
+            if (value > 1) {
+                input.value = value - 1;
+            }
+        });
+    });
+});
+
+</script>
 <!-- Footer -->
 <th:block th:replace="fragments/footer :: footer"></th:block>
 

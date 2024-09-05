@@ -1,57 +1,63 @@
 package com.abcrestaurant.restaurantweb.controller;
 
 import com.abcrestaurant.restaurantweb.model.Cart;
+import com.abcrestaurant.restaurantweb.model.Payment;
+import com.abcrestaurant.restaurantweb.model.ShippingDetails;
 import com.abcrestaurant.restaurantweb.model.User;
 import com.abcrestaurant.restaurantweb.service.CartService;
 import com.abcrestaurant.restaurantweb.service.EmailService;
+import com.abcrestaurant.restaurantweb.service.PaymentService;
+import com.abcrestaurant.restaurantweb.service.ShippingDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 public class PaymentController {
+
     @Autowired
     private EmailService emailService;
+
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private PaymentService paymentService;
+
+    @Autowired
+    private ShippingDetailsService shippingDetailsService; // Inject ShippingDetailsService
 
     @GetMapping("/payment")
     public String showPaymentPage(HttpSession session, Model model) {
         // Retrieve the logged-in user from the session
-        User user = (User) session.getAttribute("loggedInUser"); // Use the attribute name that matches your session setup
+        User user = (User) session.getAttribute("loggedInUser");
 
         if (user == null) {
-            // If user is not authenticated, redirect to login or another appropriate page
-            return "redirect:/"; // Redirect to login page if user is not authenticated
+            return "redirect:/";
         }
 
         // Fetch the last added cart item for the user
         Cart lastAddedCartItem = cartService.getLastAddedCartItem(user);
         if (lastAddedCartItem != null) {
             model.addAttribute("lastAddedProduct", lastAddedCartItem.getMenu());
-            model.addAttribute("lastAddedProductQuantity", lastAddedCartItem.getQuantity()); // Add quantity to model
+            model.addAttribute("lastAddedProductQuantity", lastAddedCartItem.getQuantity());
         }
 
         // Fetch all cart items for the authenticated user
         List<Cart> cartItems = cartService.findByUser(user);
-        // Calculate the total amount for the cart
         double totalAmount = cartService.calculateTotalAmount(user);
 
-        // Add cart items and total amount to the model
         model.addAttribute("cartItems", cartItems);
         model.addAttribute("totalAmount", totalAmount);
 
-        // Return the view for the payment page
-        return "user/payment"; // Return the Thymeleaf template path
+        return "user/payment";
     }
-
 
     @PostMapping("/processPayment")
     public String processPayment(HttpSession session,
@@ -65,15 +71,19 @@ public class PaymentController {
             return "redirect:/";
         }
 
-        // Assume the payment process is successful
+        // Fetch the last added shipping details for the user
+        ShippingDetails shippingDetails = shippingDetailsService.findLastByUser(user);
+
+        // Save payment details
+        Payment payment = new Payment(shippingDetails, productName, totalAmount / quantity, quantity, totalAmount);
+        paymentService.save(payment);
+
+        // Send confirmation email
         String emailSubject = "Payment Successful";
         String emailBody = String.format("Dear %s,\n\nYour payment was successful.\n\nDetails:\nCardholder Name: %s\nTotal Price: %.2f\nProduct Name: %s\nQuantity: %d\n\nThank you for your purchase!",
                 user.getName(), cardholderName, totalAmount, productName, quantity);
-
-        // Send the email
         emailService.sendEmail(user.getEmail(), emailSubject, emailBody);
 
-        // Redirect to a confirmation page or any other page
         return "redirect:/menu";
     }
 }

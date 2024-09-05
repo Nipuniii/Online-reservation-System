@@ -15,6 +15,10 @@ public class Reservation {
     @JoinColumn(name = "branch_id", nullable = false)
     private Branch branch;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;  // Add this field
+
     @Column(nullable = false)
     private String username;
 
@@ -33,21 +37,7 @@ public class Reservation {
     @Column(nullable = false)
     private int numberOfPeople;
 
-    public LocalTime getReservationTime() {
-        return reservationTime;
-    }
-
-    public void setReservationTime(LocalTime reservationTime) {
-        this.reservationTime = reservationTime;
-    }
-
-    public int getNumberOfPeople() {
-        return numberOfPeople;
-    }
-
-    public void setNumberOfPeople(int numberOfPeople) {
-        this.numberOfPeople = numberOfPeople;
-    }
+    // Getters and Setters...
 
     public Long getId() {
         return id;
@@ -95,6 +85,30 @@ public class Reservation {
 
     public void setReservationDate(LocalDate reservationDate) {
         this.reservationDate = reservationDate;
+    }
+
+    public LocalTime getReservationTime() {
+        return reservationTime;
+    }
+
+    public void setReservationTime(LocalTime reservationTime) {
+        this.reservationTime = reservationTime;
+    }
+
+    public int getNumberOfPeople() {
+        return numberOfPeople;
+    }
+
+    public void setNumberOfPeople(int numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     // Getters and setters...

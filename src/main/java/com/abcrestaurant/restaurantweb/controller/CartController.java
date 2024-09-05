@@ -72,13 +72,24 @@ public class CartController {
                            Model model) {
         User loggedInUser = (User) session.getAttribute("loggedInUser");
         if (loggedInUser != null) {
-            ShippingDetails shippingDetails = new ShippingDetails(firstName, lastName, phone, city, streetAddress, postCode, email, loggedInUser);
-            shippingDetailsService.save(shippingDetails);
-            // Optionally clear the cart or handle other post-checkout logic here
-            return "redirect:/payment"; // Redirect to an order confirmation page
+            // Get the last added cart item for the logged-in user
+            Cart lastCartItem = cartService.getLastAddedCartItem(loggedInUser);
+
+            if (lastCartItem != null) {
+                // Save the shipping details with the cart ID
+                ShippingDetails shippingDetails = new ShippingDetails(firstName, lastName, phone, city, streetAddress, postCode, email, loggedInUser, lastCartItem);
+                shippingDetailsService.save(shippingDetails);
+
+                // Optionally clear the cart or handle other post-checkout logic here
+                return "redirect:/payment"; // Redirect to an order confirmation page
+            } else {
+                model.addAttribute("error", "Cart is empty");
+                return "redirect:/cart";
+            }
         } else {
             model.addAttribute("error", "User not logged in");
             return "redirect:/home";
         }
     }
+
 }

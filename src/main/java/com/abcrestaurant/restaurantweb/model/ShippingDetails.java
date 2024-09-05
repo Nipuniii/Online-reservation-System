@@ -21,10 +21,14 @@ public class ShippingDetails {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
     // Constructors, getters, and setters
     public ShippingDetails() {}
 
-    public ShippingDetails(String firstName, String lastName, String phone, String city, String streetAddress, String postCode, String email, User user) {
+    public ShippingDetails(String firstName, String lastName, String phone, String city, String streetAddress, String postCode, String email, User user, Cart cart) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -33,6 +37,16 @@ public class ShippingDetails {
         this.postCode = postCode;
         this.email = email;
         this.user = user;
+        this.cart = cart;
+    }
+
+    // Getters and setters for cart
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public Long getId() {
@@ -59,20 +73,20 @@ public class ShippingDetails {
         this.lastName = lastName;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getStreetAddress() {
@@ -106,5 +120,6 @@ public class ShippingDetails {
     public void setUser(User user) {
         this.user = user;
     }
-// Getters and setters
+
+    // Other getters and setters...
 }

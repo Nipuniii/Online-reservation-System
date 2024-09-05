@@ -2,9 +2,11 @@ package com.abcrestaurant.restaurantweb.controller;
 
 import com.abcrestaurant.restaurantweb.model.Branch;
 import com.abcrestaurant.restaurantweb.model.Reservation;
+import com.abcrestaurant.restaurantweb.model.User;
 import com.abcrestaurant.restaurantweb.service.BranchService;
 import com.abcrestaurant.restaurantweb.service.EmailService;
 import com.abcrestaurant.restaurantweb.service.ReservationService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,12 +34,13 @@ public class ReservationController {
 
     @PostMapping("/reservation")
     public String bookTable(@RequestParam("branchId") Long branchId,
-                            @RequestParam("username") String username,
-                            @RequestParam("email") String email,
-                            @RequestParam("phone") String phone,
                             @RequestParam("reservationDate") String date,
                             @RequestParam("reservationTime") String time,
                             @RequestParam("numberOfPeople") int numberOfPeople,
+                            @RequestParam("username") String username,
+                            @RequestParam("email") String email,
+                            @RequestParam("phone") String phone,
+                            HttpSession session,
                             Model model) {
 
         try {
@@ -52,6 +55,15 @@ public class ReservationController {
             LocalTime reservationTime = LocalTime.parse(time);
 
             if (reservationService.checkTableAvailability(branch, reservationDate, reservationTime, numberOfPeople)) {
+                // Retrieve the logged-in user from the session
+                User loggedInUser = (User) session.getAttribute("loggedInUser");
+
+                if (loggedInUser == null) {
+                    model.addAttribute("error", "You must be logged in to make a reservation.");
+                    return "redirect:/"; // Redirect to login page if the user is not logged in
+                }
+
+                // Create and set the reservation details
                 Reservation reservation = new Reservation();
                 reservation.setBranch(branch);
                 reservation.setUsername(username);
@@ -61,13 +73,15 @@ public class ReservationController {
                 reservation.setReservationTime(reservationTime);
                 reservation.setNumberOfPeople(numberOfPeople);
 
+                // Set the logged-in user as a reference in the reservation
+                reservation.setUser(loggedInUser);
+
                 reservationService.bookTable(reservation);
-                model.addAttribute("success", "Your reservation is will be confirm! Please check your email for details.");
+                model.addAttribute("success", "Your reservation is confirmed! Please check your email for details.");
 
                 return "user/reservation"; // Ensure this points to the correct success page
             } else {
                 model.addAttribute("error", "Sorry, the table is fully booked for the selected date and time.");
-                model.addAttribute("error", "Table is not available for the selected date and time.");
                 model.addAttribute("branches", branchService.getAllBranches());
                 return "user/reservation"; // Return to the form page with an error message
             }
@@ -77,6 +91,7 @@ public class ReservationController {
             return "user/reservation"; // Return to the form page with an error message
         }
     }
+
 
     @GetMapping("/reservationlist")
     public String listReservations(Model model) {

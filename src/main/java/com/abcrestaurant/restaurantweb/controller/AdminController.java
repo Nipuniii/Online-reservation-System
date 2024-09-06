@@ -2,10 +2,7 @@ package com.abcrestaurant.restaurantweb.controller;
 
 import com.abcrestaurant.restaurantweb.model.User;
 import com.abcrestaurant.restaurantweb.model.UserRole;
-import com.abcrestaurant.restaurantweb.service.BranchService;
-import com.abcrestaurant.restaurantweb.service.MenuService;
-import com.abcrestaurant.restaurantweb.service.OfferService;
-import com.abcrestaurant.restaurantweb.service.UserService;
+import com.abcrestaurant.restaurantweb.service.*;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +28,9 @@ public class AdminController {
     @Autowired
     private OfferService offerService;
 
+    @Autowired
+    private PaymentService paymentService;
+
     @GetMapping("/admindashboard")
 
     public String getDashboard(HttpSession session,Model model) {
@@ -48,6 +48,9 @@ public class AdminController {
         model.addAttribute("totalUserCount", totalUserCount);
 
 
+
+        long totalPaymentCount = paymentService.getAllPayments().size();
+        model.addAttribute("totalPaymentCount", totalPaymentCount);
 
         long totalOffer = offerService.getAllOffers().size();
         model.addAttribute("totalOffer", totalOffer);

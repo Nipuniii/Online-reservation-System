@@ -86,4 +86,11 @@ public class PaymentController {
 
         return "redirect:/menu";
     }
+
+    @GetMapping("/paymentlist")
+    public String showPaymentPage(Model model) {
+        List<Payment> payments = paymentService.getAllPayments();
+        model.addAttribute("payments", payments);
+        return "admin/payment/paymentlist"; // Points to src/main/resources/templates/auth/register.html
+    }
 }

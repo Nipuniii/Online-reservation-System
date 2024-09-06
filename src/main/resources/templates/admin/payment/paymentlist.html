@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <link href="/css/tailwind.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Product List</title>
+</head>
+<body>
+<div class="flex h-screen">
+  <aside  style="width: 25%;" class="w-1/4 bg-black text-white">
+    <th:block th:replace="fragments/admin-sidebar :: div"></th:block>
+  </aside>
+
+  <div style="width: 75%;" class="flex-1 flex flex-col ">
+    <header class="w-full bg-white">
+      <th:block th:replace="fragments/admin-header :: div"></th:block>
+    </header>
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="margin: 10px 0; margin-top: 140px;">
+        <div style="display: flex;">
+          <div style="width: 50%;">
+            <h1 style="font-size: 40px; font-family: 'Anton', sans-serif; color: #830823;">
+              Product <span style="color: black;">List</span>
+            </h1>
+            <p style="color: #4A5568; font-family: 'Boogaloo', cursive;">
+
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px; font-family: 'Boogaloo', cursive;">
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead style="background-color: black; color: white;">
+              <tr>
+                <th style="padding: 10px 5px; border-bottom: 2px solid white; border-top-left-radius: 25px; border-bottom-left-radius: 25px;">Product Id</th>
+                <th style="padding: 10px 5px; border-bottom: 2px solid white;">Product Name</th>
+                <th style="padding: 10px 20px; border-bottom: 2px solid white;">Quantity</th>
+                <th style="padding: 10px 5px; border-bottom: 2px solid white;">Total Price</th>
+                <th style="padding: 10px 5px; border-bottom: 2px solid white; border-top-right-radius: 25px; border-bottom-right-radius: 25px; ">Shipping Id</th>
+<!--                <th style="padding: 10px 30px; border-bottom: 2px solid white; border-top-right-radius: 25px; border-bottom-right-radius: 25px;">Action</th>-->
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr th:each="payment : ${payments}" style="text-align: center; color: black; border-bottom: 1px solid #E2E8F0;">
+                <td style="padding: 10px 40px; color: #830823;">
+                  <u th:text="${payment.id}">Product ID Here</u>
+                </td>
+                <td style="padding: 10px;" th:text="${payment.productName}">Product Name Here</td>
+                <td style="padding: 10px 40px;" th:text="${payment.quantity}">Quantity Here</td>
+                <td style="padding: 10px;" th:text="${payment.totalPrice}">Total Price Here</td>
+                <td style="padding: 10px;" th:text="${payment.shippingDetails.id}">Shipping ID Here</td>
+<!--                <td style="padding: 10px 30px;">-->
+<!--                  <div style="display: flex; gap: 20px;">-->
+<!--                    <a th:href="@{/editpayment/{id}(id=${payment.id})}" style="padding: 5px 10px; color: white; background-color: green; border-radius: 5px;">Edit</a>-->
+<!--                    <form th:action="@{/deletepayment/{id}(id=${payment.id})}" method="post" style="display:inline;">-->
+<!--                      <button type="submit" style="padding: 5px 10px; color: white; background-color: red; border-radius: 5px;">Delete</button>-->
+<!--                    </form>-->
+<!--                  </div>-->
+<!--                </td>-->
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+          <!-- Pagination -->
+          <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+            <p style="color: #718096;" id="paginationText">Showing 1 to 5 from 30 entries</p>
+            <div style="font-size: 30px;" id="pagination">
+              <a href="#" style="background-color: white; color: black;">&larr;</a>
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#" style="background-color: white; color: black;">&rarr;</a>
+            </div>
+          </div>
+          <!-- End Pagination -->
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      let currentPage = 1;
+      const rowsPerPage = 10;
+      const totalRows = 50;
+
+      function showRows(startIndex, endIndex) {
+          const rows = document.querySelectorAll('.tableRow');
+          rows.forEach((row, index) => {
+              row.style.display = (index >= startIndex && index < endIndex) ? 'table-row' : 'none';
+          });
+      }
+
+      function changePage(page) {
+          currentPage = page;
+          const startIndex = (currentPage - 1) * rowsPerPage;
+          const endIndex = startIndex + rowsPerPage;
+          showRows(startIndex, endIndex);
+
+          const paginationText = document.getElementById('paginationText');
+          paginationText.innerText = `Showing ${startIndex + 1} to ${endIndex} from ${totalRows} entries`;
+      }
+
+      function prevPage() {
+          if (currentPage > 1) {
+              changePage(currentPage - 1);
+          }
+      }
+
+      function nextPage() {
+          const totalPages = Math.ceil(totalRows / rowsPerPage);
+          if (currentPage < totalPages) {
+              changePage(currentPage + 1);
+          }
+      }
+
+      changePage(currentPage);
+    </script>
+  </div>
+</div>
+
+
+
+<script>
+  function loadPreview(index) {
+      const inputFile = document.getElementById('image_' + index);
+      const previewImage = document.getElementById('preview_image_' + index);
+      const infoBox = document.getElementById('info_image_' + index);
+      const file = inputFile.files[0];
+
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+              previewImage.src = e.target.result;
+              previewImage.classList.remove('hidden');
+              infoBox.classList.add('hidden');
+          }
+          reader.readAsDataURL(file);
+      } else {
+          previewImage.classList.add('hidden');
+          infoBox.classList.remove('hidden');
+      }
+  }
+
+  function validatePrices() {
+      var price = parseFloat(document.getElementById('price').value);
+      var sellingPrice = parseFloat(document.getElementById('selling_price').value);
+
+      var priceError = document.getElementById('priceError');
+      var sellingPriceError = document.getElementById('sellingPriceError');
+
+      // Reset previous error messages
+      priceError.textContent = "";
+      sellingPriceError.textContent = "";
+
+      if (isNaN(price) || isNaN(sellingPrice)) {
+          priceError.textContent = "Please enter valid numeric values for both prices.";
+          return;
+      }
+
+      if (sellingPrice > price) {
+          sellingPriceError.textContent = "Selling price must be lower than or equal to the price.";
+      } else {
+          // Perform form submission or further actions
+          document.getElementById('productForm').submit();
+      }
+  }
+</script>
+</body>
+</html>
